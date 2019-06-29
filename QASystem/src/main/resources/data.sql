@@ -1,23 +1,11 @@
-CREATE TABLE Users (
-Username VARCHAR(16) NOT NULL,
-Password VARCHAR(16) NOT NULL,
-PRIMARY KEY(Username)
+INSERT INTO Users(
+VALUES(0,'maxmustermann','password')
 );
 
-CREATE TABLE Questions(
-ID INT,
-Text VARCHAR(420) NOT NULL,
-Author VARCHAR(16),
-PRIMARY KEY(ID),
-FOREIGN KEY (Author) REFERENCES Users(Username)
+INSERT INTO Questions(
+VALUES(0,'Hello World!','0')
 );
 
-CREATE TABLE Answers(
-ID INT,
-Text VARCHAR(420) NOT NULL,
-Question VARCHAR(420) NOT NULL,
-Author VARCHAR(16) NOT NULL,
-PRIMARY KEY(ID),
-FOREIGN KEY (Question) REFERENCES Questions(ID),
-FOREIGN KEY (Author) REFERENCES Users(Username)
+INSERT INTO Answers(
+VALUES(0,'weilbaum',0,0)
 );
