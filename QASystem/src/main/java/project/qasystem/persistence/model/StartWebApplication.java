@@ -1,4 +1,4 @@
-package project.qasystem;
+package project.qasystem.persistence.model;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
