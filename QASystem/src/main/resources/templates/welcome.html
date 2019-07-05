@@ -13,6 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
 
 </head>
 
@@ -23,7 +24,7 @@
 
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="./index.html"><img src="img/qaLogo.png"></a>
+            <a class="navbar-brand" href="./#"><img src="img/QLogo.png"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -33,10 +34,10 @@
                         <a class="nav-link" href="./#">Start</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./#" th:href="@{/home}">Anmelden</a>
+                        <a class="nav-link" href="./login">Anmelden</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./#">Registrieren</a>
+                        <a class="nav-link" href="./registration">Registrieren</a>
                     </li>
                 </ul>
             </div>
@@ -57,7 +58,6 @@
         <h1>Spring Boot Web Thymeleaf Example</h1>
         <h2>
             <span th:text="'Welcome, ' + ${message}"></span>
-            <p> test</p>
         </h2>
     </div>
     <h3>This project already includes</h3>
