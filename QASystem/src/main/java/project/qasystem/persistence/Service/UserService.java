@@ -1,7 +1,8 @@
 package project.qasystem.persistence.Service;
 
 import project.qasystem.persistence.DTOs.*;
-import project.qasystem.persistence.Entities.*;
+//import project.qasystem.persistence.Entities.*;
+import project.qasystem.persistence.model.User;
 
 import java.util.List;
 

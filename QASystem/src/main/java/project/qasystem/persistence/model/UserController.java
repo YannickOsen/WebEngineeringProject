@@ -1,5 +1,8 @@
-package project.qasystem.persistence.controller;
+package project.qasystem.persistence.model;
 
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.web.context.request.WebRequest;
 import project.qasystem.persistence.DTOs.RegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,10 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import project.qasystem.persistence.Service.UserService;
 
+import javax.validation.Valid;
+
 //TODO maybe remove url if a user mapping is not beneficial as userpages are not necessary
 @Controller
 //@RequestMapping("/user")
 public class UserController {
+
+    private UserService userService = new UserService();
 
 
     @ModelAttribute("user")
@@ -18,8 +25,10 @@ public class UserController {
         return new RegistrationDto();
     }
 
-    @GetMapping
+    @GetMapping("/registration")
     public String showRegistrationForm(Model model) {
+        RegistrationDto registrationDto = registrationDto();
+        model.addAttribute("user", registrationDto);
         return "register";
     }
 
@@ -39,14 +48,13 @@ public class UserController {
     public String welcome() { return "welcome"; }
 
     @RequestMapping("/login")
-    public String login(Model model, String error, String logout) {
-        if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
-
-        if (logout != null)
-            model.addAttribute("message", "You have been logged out successfully.");
-
+    public String login() {
         return "signin";
+    }
+
+    @RequestMapping("/logout")
+    public String logout() {
+        return "welcome";
     }
 
     /**
@@ -55,9 +63,20 @@ public class UserController {
      *
      * @return "user_startup_page" to navigate to the page.
      */
-    @RequestMapping("/registration")
-    //TODO create registration page for user
-    public String registration() { return "register"; }
+    @PostMapping("/registration")
+    public String registration(@ModelAttribute("user") RegistrationDto registrationDto, BindingResult result) {
+        if (result.hasErrors()) {
+            return "register";
+        }
+        System.out.println(registrationDto.getUserName());
+        registrationDto.userNameTest();
+        String error = userService.checkToCreateUser(registrationDto);
+       if (error == "") {
+           userService.createUser(registrationDto.getUserName(), registrationDto.getPassword());
+           return "welcome";
+       }
+       return "register";
+    }
 
 
     //TODO add user:Post

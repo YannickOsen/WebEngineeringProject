@@ -1,8 +1,12 @@
 package project.qasystem.persistence.Service;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import project.qasystem.persistence.Entities.Question;
-import project.qasystem.persistence.Entities.User;
+//import project.qasystem.persistence.Entities.User;
+import project.qasystem.persistence.model.User;
+import project.qasystem.persistence.repositories.UserRepository;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -13,6 +17,12 @@ import java.util.List;
 public class DataBaseService {
 
     private static DataBaseService instance;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     /**
@@ -42,12 +52,14 @@ public class DataBaseService {
     }
 
     public void insertUser(String userName, String passWord){
-        //TODO insert User into DataBase
+        User user = new User();
+        user.setUsername(userName);
+        user.setPassword(bCryptPasswordEncoder.encode(passWord));
+        userRepository.save(user);
     }
 
-    public User getUserByUserName(String Username){
-        //TODO insert User into DataBase
-        return null;
+    public User getUserByUserName(String username){
+        return userRepository.findByUsername(username);
     }
 
     public void setAdvancedUserData(/*Content*/){

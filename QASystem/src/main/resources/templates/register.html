@@ -37,7 +37,7 @@
 </div>
 
 <main role="main" class="container">
-    <form th:action="@{/registration}" method="post">
+    <form th:action="@{/registration}" method="post" modelAttribute="user">
         Name:<br>
         <input type="text" name="name" placeholder="Nickname">
         <br>
