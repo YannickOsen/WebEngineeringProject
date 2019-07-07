@@ -3,35 +3,42 @@ package project.qasystem.persistence.model;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.context.annotation.Bean;
         import org.springframework.context.annotation.Configuration;
+        import org.springframework.context.annotation.Import;
+        import org.springframework.context.annotation.ImportResource;
+        import org.springframework.security.authentication.AuthenticationManager;
         import org.springframework.security.authentication.AuthenticationProvider;
         import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+        import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
         import org.springframework.security.config.annotation.web.builders.HttpSecurity;
         import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
         import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
         import org.springframework.security.core.userdetails.User;
         import org.springframework.security.core.userdetails.UserDetails;
-        import org.springframework.security.core.userdetails.UserDetailsService;
+//        import org.springframework.security.core.userdetails.UserDetailsService;
         import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-        import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+        import project.qasystem.persistence.Service.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-/*    @Autowired
-    UserDetailsService userDetailsService;*/
+    private CustomUserDetailsService userDetailsService;
 
-    /**
-     * Method to authenticate a user by getting the user details from data source
-     * @return
-     */
-/*    @Bean
-    public AuthenticationProvider authenticate() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService);
-        provider.setPasswordEncoder(new BCryptPasswordEncoder());
-        return provider;
-    }*/
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationManager customAuthenticationManager() throws Exception {
+        return authenticationManager();
+    }
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        userDetailsService = new CustomUserDetailsService();
+        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -49,16 +56,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .permitAll()
                 .clearAuthentication(true);
-    }
-    @Bean
-    @Override
-    public UserDetailsService userDetailsService() {
-        UserDetails user =
-                User.withDefaultPasswordEncoder()
-                        .username("user")
-                        .password("user")
-                        .roles("USER")
-                        .build();
-        return new InMemoryUserDetailsManager(user);
     }
 }
