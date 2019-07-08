@@ -10,9 +10,4 @@ public class IndexController {
         return "login_page";
     }
 
-
-    @GetMapping("/testpage")
-    public String testPage(){
-        return "testPage";
-    }
 }
