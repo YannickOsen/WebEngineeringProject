@@ -68,6 +68,11 @@ public class UserController {
         return "question";
     }
 
+    @RequestMapping("/newquestion")
+    public String newQuestion() {
+        return "newQuestion";
+    }
+
     /**
      * Brings the User to the registration page.
      *

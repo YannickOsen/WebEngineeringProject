@@ -1,10 +1,98 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>QQuestion</title>
+
+    <!--<link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+            background-color: #e1f5fe;
+        }
+        .navbar {
+            padding: .8rem;
+        }
+        .nav-link {
+            font-size: 1.1em !important;
+        }
+        ul{
+            display: inline-block;
+        }
+        .padding {
+            padding-bottom: 2rem;
+        }
+    </style>
 </head>
+
 <body>
-$END$
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="./"><p style="font-size: 2em; color: #afc2cb; margin-bottom: 0;">QQ</p></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="./">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./question">Frage stellen</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./questionlist">Fragenübersicht</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./login">Anmelden</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid padding" >
+    <div class="row text-center">
+        <div class="col-lg-12">
+            <h2>Neue Frage</h2>
+        </div>
+    </div>
+</div>
+
+<main role="main" class="container">
+    <div class="container-fluid padding" >
+        <div class="row text-center">
+            <div class="col-lg-12">
+               <!-- <form th:action="@{/newQuestion}" th:object="${newQuestion}" method="post">
+                    Gib deine Frage ein:<br>
+                    <input th:field="*{userName}" id="newQuestion" type="text" name="newQuestion" placeholder="Deine Frage">
+                    <br><br>
+                    <input type="submit" value="Submit">
+                </form> -->
+                <form>
+                    Gib deine Frage ein:<br>
+                    <input id="newQuestion" type="text" name="newQuestion" placeholder="Deine Frage">
+                    <br><br>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- /.container -->
+
+<!--<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>-->
 </body>
 </html>
