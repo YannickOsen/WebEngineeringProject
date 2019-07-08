@@ -39,10 +39,10 @@
 <main role="main" class="container">
     <form th:action="@{/registration}" th:object="${registration}" method="post" modelAttribute="user">
         Name:<br>
-        <input type="text" name="name" placeholder="Nickname">
+        <input th:field="*{userName}" id="username" type="text" name="name" placeholder="Nickname">
         <br>
         Password:<br>
-        <input type="password" name="password" placeholder="Password">
+        <input th:field="*{password}" id="password" type="password" name="password" placeholder="Password">
         <br>
         Confirm your Password:<br>
         <input th:field="*{confirmPassword}" id="confirmPassword" type="password" name="password" placeholder="Confirm Password">

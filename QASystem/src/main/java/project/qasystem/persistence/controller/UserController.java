@@ -1,5 +1,6 @@
-package project.qasystem.persistence.model;
+package project.qasystem.persistence.controller;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.context.request.WebRequest;
@@ -20,7 +21,7 @@ public class UserController {
     private UserService userService = new UserService();
 
 
-    @ModelAttribute("user")
+    @ModelAttribute("registration")
     public RegistrationDto registrationDto() {
         return new RegistrationDto();
     }
@@ -28,7 +29,7 @@ public class UserController {
     @GetMapping("/registration")
     public String showRegistrationForm(Model model) {
         RegistrationDto registrationDto = registrationDto();
-        model.addAttribute("user", registrationDto);
+        model.addAttribute("registration", new RegistrationDto());
         return "register";
     }
 
@@ -64,16 +65,19 @@ public class UserController {
      * @return "user_startup_page" to navigate to the page.
      */
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("user") RegistrationDto registrationDto, BindingResult result) {
+    public String registration(@ModelAttribute("registration") RegistrationDto registrationDto, BindingResult result) {
+/*        registrationDto.setUserName(username);
+        registrationDto.setPassword(password);
+        registrationDto.setConfirmPassword(confirmPassword);*/
         if (result.hasErrors()) {
             return "register";
         }
         System.out.println(registrationDto.getUserName());
-        registrationDto.userNameTest();
+//        registrationDto.userNameTest();
         String error = userService.checkToCreateUser(registrationDto);
        if (error == "") {
            userService.createUser(registrationDto.getUserName(), registrationDto.getPassword());
-           return "welcome";
+           return "redirect:welcome";
        }
        return "register";
     }
