@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import project.qasystem.persistence.Service.*;
-import project.qasystem.persistence.Entities.*;
+import project.qasystem.persistence.model.Question;
 
 
 @Controller
@@ -51,7 +51,6 @@ public class QuestionController {
      * @param question Question with data Thymeleaf provides.
      * @param model Model Thymeleaf uses.
      * @return redirects to the new webpage
-     */
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String postExercise(@ModelAttribute("exercise") Question question, Model model) {
         QuestionService service = new QuestionService();
@@ -61,5 +60,6 @@ public class QuestionController {
     }
 
 
+     */
 
 }

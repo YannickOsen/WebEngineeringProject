@@ -1,7 +1,8 @@
 package project.qasystem.persistence.Service;
-import project.qasystem.persistence.Entities.Question;
 
 import java.util.List;
+
+import project.qasystem.persistence.model.Question;
 
 
 public class QuestionService {

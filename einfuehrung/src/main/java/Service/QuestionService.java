@@ -12,7 +12,6 @@ public class QuestionService {
     }
 
 
-    //TODO remove if DB variant is usable everytime.
     public void insertQuestion(String title, String description, String userName){
         DataBaseService.getInstance().insertQuestion(title, description, userName);
     }
