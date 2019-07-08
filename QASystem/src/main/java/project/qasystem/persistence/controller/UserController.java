@@ -13,7 +13,6 @@ import project.qasystem.persistence.Service.UserService;
 
 import javax.validation.Valid;
 
-//TODO maybe remove url if a user mapping is not beneficial as userpages are not necessary
 @Controller
 //@RequestMapping("/user")
 public class UserController {
@@ -32,6 +31,10 @@ public class UserController {
         return "register";
     }
 
+    @GetMapping("/testpage")
+    public String testPage(){
+        return "testPage";
+    }
 
     /**
      * Brings the User to the Startup page.
@@ -41,7 +44,7 @@ public class UserController {
      */
     @RequestMapping("/home")
     //TODO create startup page for user
-    public String startUp() { return "user_startup_page"; }
+    public String startUp() { return "welcome"; }
 
     @RequestMapping("/")
     //TODO create startup page for user
@@ -57,6 +60,21 @@ public class UserController {
         return "welcome";
     }
 
+    @RequestMapping("/questionlist")
+    public String questionList() {
+        return "questionList";
+    }
+
+    @RequestMapping("/question")
+    public String question() {
+        return "question";
+    }
+
+    @RequestMapping("/newquestion")
+    public String newQuestion() {
+        return "newQuestion";
+    }
+
     /**
      * Brings the User to the registration page.
      *
@@ -65,7 +83,7 @@ public class UserController {
      */
     @PostMapping("/registration")
     public String registration(@ModelAttribute("registration") RegistrationDto registrationDto, BindingResult result) {
-/*        registrationDto.setUserName(username);
+/*      registrationDto.setUserName(username);
         registrationDto.setPassword(password);
         registrationDto.setConfirmPassword(confirmPassword);*/
         if (result.hasErrors()) {

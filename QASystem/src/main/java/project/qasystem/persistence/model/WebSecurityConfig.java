@@ -35,11 +35,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        //TODO remove .heaters.frameoption.disable after H2 has be configured correctly
+        http.headers().frameOptions().disable();
         http
+
+
+                //TODO remove csrf.disable after H2 has be configured correctly
+                .csrf().disable()
+
+
+
                 .authorizeRequests()
                 .antMatchers( "/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/registration").permitAll()
+                .antMatchers("/questionlist").permitAll()
+                .antMatchers("/question").permitAll()
+                .antMatchers("/newquestion").permitAll()
+
+                .antMatchers("/logout").permitAll()
+                .antMatchers("/testpage").permitAll()
+                .antMatchers("/console/*").permitAll()
+
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

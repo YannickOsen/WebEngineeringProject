@@ -12,6 +12,16 @@ import project.qasystem.persistence.model.Question;
 public class QuestionController {
 
 
+    /**
+     * Creates a question with the title, description and userName
+     *
+     * @param title The title of the question
+     * @param description The content of the question
+     * @param userName userName of the user.
+     */
+    public void createQuestionString (String title, String description, String userName) {
+        DataBaseService.getInstance().insertQuestion(title, description, userName);
+    }
 
     /**
      * handles get requests for questions.
@@ -19,12 +29,12 @@ public class QuestionController {
      *
      * @param id the id of the question to be displayed
      * @param model the model Thymeleaf uses.
-     * @return exercise at success to display the found exercise;
-     * error when exercise not found or id invalid.
+     * @return Question at success to display the found Question;
+     * error when Question not found or id invalid.
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     //TODO adapt to new project
-    public String getExercise(@PathVariable("id") String id, Model model) {
+    public String getQuestion(@PathVariable("id") String id, Model model) {
         QuestionService service = new QuestionService();
         int idInt;
         try {
@@ -38,8 +48,8 @@ public class QuestionController {
             model.addAttribute("error", "Übung nicht gefunden!");
             return "error";
         } else {
-            model.addAttribute("exercise", toGet);
-            return "exercise";
+            model.addAttribute("Question", toGet);
+            return "Question";
         }
     }
 
@@ -52,7 +62,7 @@ public class QuestionController {
      * @param model Model Thymeleaf uses.
      * @return redirects to the new webpage
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String postExercise(@ModelAttribute("exercise") Question question, Model model) {
+    public String postQuestion(@ModelAttribute("Question") Question question, Model model) {
         QuestionService service = new QuestionService();
             service.insertQuestion(question.getTitle(), question.getDescription(),question.getUserName());
             //TODO add new webpage

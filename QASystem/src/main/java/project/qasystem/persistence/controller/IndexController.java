@@ -1,5 +1,6 @@
 package project.qasystem.persistence.controller;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 public class IndexController {
@@ -8,4 +9,5 @@ public class IndexController {
     public String login() {
         return "login_page";
     }
+
 }
