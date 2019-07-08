@@ -1,6 +1,7 @@
 package Service;
 
 
+import Entities.Answer;
 import Entities.Question;
 import Entities.User;
 
@@ -35,6 +36,12 @@ public class DataBaseService {
         return null;
     }
 
+    public Answer getAnswerById(int id){
+        //TODO connection to DB
+        Answer answer = new Answer();
+        return answer;
+    }
+
     public void createTables(){
         /*TODO change to return Table type
             * Grab Table of Questions
@@ -51,7 +58,8 @@ public class DataBaseService {
     }
 
     public void setAdvancedUserData(/*Content*/){
-        //TODO Questions/Answers of this user
+        //TODO Questions/Answers of this user?
+        //propably not needed, can be removed
     }
 
     public void insertQuestion(String title, String description, String userName){
@@ -59,7 +67,9 @@ public class DataBaseService {
     }
 
     public void insertAnswer(int questionID, String answerContent, String userNameAnswering){
-        //TODO DB connection;
+
+        //TODO DB connection, which should generate answerID;
+        //addAnswer(answerID);
     }
 
     public List<User> getAllUsers(){
@@ -72,11 +82,36 @@ public class DataBaseService {
         //TODO DB
     }
 
-
     public List<Question> getQuestionListByName(String name) {
         if (name != null && !name.isEmpty()) {
             //TODO DB
         }
         return null;
+    }
+
+    /**
+     * Adds the Answer to the answered Questions answerList
+     * Marks the Question as Answered
+     *
+     * @param answerID ID of the answer that tries +to solve this question.
+     */
+    public void addAnswer(int answerID){
+        Answer currentAnswer = getAnswerById(answerID);
+        Question answeredQuestion = getQuestionById(currentAnswer.getIdQuestion());
+        answeredQuestion.setAnswered(true);
+        List<Answer> currentAnswerList = answeredQuestion.getAnswerList();
+        currentAnswerList.set(currentAnswerList.size(),getAnswerById(answerID)) ;
+        //TODO update question back to databse
+    }
+
+    /**
+     * Adds the Answer to the answered Questions answerList
+     * Marks the Question as Answered
+     *
+     * @param answerID ID of the answer that solved this question.
+     */
+    public void qustionSolved(int answerID){
+        getAnswerById(answerID).setAcceptedAnswer(true);
+        getQuestionById(getAnswerById(answerID).getIdQuestion()).setAnswered(true);
     }
 }
