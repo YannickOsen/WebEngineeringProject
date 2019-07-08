@@ -1,11 +1,11 @@
-package controller;
+package project.qasystem.persistence.controller;
 
-import DTOs.RegistrationDto;
+import project.qasystem.persistence.DTOs.RegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import Service.UserService;
+import project.qasystem.persistence.Service.UserService;
 
 //TODO maybe remove url if a user mapping is not beneficial as userpages are not necessary
 @Controller

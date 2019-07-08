@@ -1,14 +1,14 @@
 package project.qasystem.persistence.Service;
 
 
+import Entities.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import project.qasystem.persistence.Entities.Question;
 //import project.qasystem.persistence.Entities.User;
-import project.qasystem.persistence.model.User;
+import project.qasystem.persistence.Entities.Question;
+import project.qasystem.persistence.Entities.User;
 import project.qasystem.persistence.repositories.UserRepository;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -16,6 +16,7 @@ import java.util.List;
  */
 public class DataBaseService {
 
+    @Autowired
     private static DataBaseService instance;
 
     @Autowired
@@ -43,6 +44,13 @@ public class DataBaseService {
     public Question getQuestionById(int id){
         //TODO connection to DB
         return null;
+    }
+
+
+    public Answer getAnswerById(int id){
+        //TODO connection to DB
+        Answer answer = new Answer();
+        return answer;
     }
 
     public void createTables(){
@@ -90,5 +98,31 @@ public class DataBaseService {
             //TODO DB
         }
         return null;
+    }
+
+    /**
+     * Adds the Answer to the answered Questions answerList
+     * Marks the Question as Answered
+     *
+     * @param answerID ID of the answer that tries +to solve this question.
+     */
+    public void addAnswer(int answerID){
+        Answer currentAnswer = getAnswerById(answerID);
+        Question answeredQuestion = getQuestionById(currentAnswer.getIdQuestion());
+        answeredQuestion.setAnswered(true);
+        List<Answer> currentAnswerList = answeredQuestion.getAnswerList();
+        currentAnswerList.set(currentAnswerList.size(),getAnswerById(answerID)) ;
+        //TODO update question back to databse
+    }
+
+    /**
+     * Adds the Answer to the answered Questions answerList
+     * Marks the Question as Answered
+     *
+     * @param answerID ID of the answer that solved this question.
+     */
+    public void questionSolved(int answerID){
+        getAnswerById(answerID).setAcceptedAnswer(true);
+        getQuestionById(getAnswerById(answerID).getIdQuestion()).setAnswered(true);
     }
 }

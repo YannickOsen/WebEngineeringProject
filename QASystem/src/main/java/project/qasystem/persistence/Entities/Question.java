@@ -1,6 +1,11 @@
 package project.qasystem.persistence.Entities;
 
+import Entities.Answer;
+
+import java.util.List;
+
 public class Question {
+
 
     private String userName;
     private int idQuestion;
@@ -8,28 +13,21 @@ public class Question {
     private boolean isSolved;
     private String title;
     private String description;
+    private List<Entities.Answer> answerList;
+    //TODO maybe integrate "isAnswered" into Answerlist
 
-
-    //TODO maybe add Answers?
-    public Question(String userName, int idQuestion, boolean isAnswered, boolean isSolved, String title, String description){
+    public Question(String userName, int idQuestion, boolean isAnswered, boolean isSolved, String title, String description, List<Entities.Answer> answerList){
         this.userName = userName;
         this.idQuestion = idQuestion;
         this.isAnswered = isAnswered;
         this.isSolved = isSolved;
         this.title = title;
         this.description = description;
+        this.answerList = answerList;
     }
 
 
-    public Question(){}
-
-
-    public boolean isSolved() {
-        return isSolved;
-    }
-
-    public void setSolved(boolean solved) {
-        isSolved = solved;
+    public Question(){
     }
 
     public String getUserName() {
@@ -46,6 +44,14 @@ public class Question {
 
     public void setIdQuestion(int idQuestion) {
         this.idQuestion = idQuestion;
+    }
+
+    public boolean isSolved() {
+        return isSolved;
+    }
+
+    public void setSolved(boolean solved) {
+        isSolved = solved;
     }
 
     public boolean isAnswered() {
@@ -72,6 +78,11 @@ public class Question {
         this.description = description;
     }
 
+    public List<Entities.Answer> getAnswerList() {
+        return answerList;
+    }
 
-
+    public void setAnswerList(List<Answer> answerList) {
+        this.answerList = answerList;
+    }
 }

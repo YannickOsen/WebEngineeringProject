@@ -1,4 +1,4 @@
-package DTOs;
+package project.qasystem.persistence.DTOs;
 
 public class AnswerDTO {
     private String authorName;

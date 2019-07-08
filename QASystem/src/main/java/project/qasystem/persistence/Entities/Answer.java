@@ -1,10 +1,12 @@
-package project.qasystem.persistence.model;
+package project.qasystem.persistence.Entities;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="Answers")
 public class Answer {
+
+    //TODO adapt remainder of Entities.Answer elements
 
     @Id
     @Column
@@ -15,7 +17,7 @@ public class Answer {
 
     @ManyToOne
     @JoinColumn(name="QuestionID")
-    private Question question;
+    private project.qasystem.persistence.Entities.Question question;
 
     @ManyToOne
     @JoinColumn(name="UserID")
@@ -27,7 +29,7 @@ public class Answer {
     public String getText() {return text;}
     public void setText(String text) {this.text = text;}
 
-    public Question getQuestion() {return question;}
+    public project.qasystem.persistence.Entities.Question getQuestion() {return question;}
     public void setQuestion(Question question) {this.question = question;}
 
     public User getUser() {return user;}

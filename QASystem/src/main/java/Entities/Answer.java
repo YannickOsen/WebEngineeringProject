@@ -1,6 +1,8 @@
 package Entities;
 
 public class Answer {
+
+
     private String authorName;
     private int idQuestion;
     private int idAnswer;

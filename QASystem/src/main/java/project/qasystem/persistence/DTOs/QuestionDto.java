@@ -1,20 +1,27 @@
 package project.qasystem.persistence.DTOs;
 
+import Entities.Answer;
+
+import java.util.List;
+
 public class QuestionDto {
     private String userName;
     private int idQuestion;
     private boolean isAnswered;
+    private boolean isSolved;
     private String title;
     private String description;
+    private List<Answer> answerList;
+    //TODO maybe integrate "isAnswered" into Answerlist
 
-
-    //TODO maybe add Answers?
-    public QuestionDto(String userName, int idQuestion, boolean isAnswered, String title, String description){
+    public QuestionDto(String userName, int idQuestion, boolean isAnswered, boolean isSolved, String title, String description, List<Answer> answerList){
         this.userName = userName;
         this.idQuestion = idQuestion;
         this.isAnswered = isAnswered;
+        this.isSolved = isSolved;
         this.title = title;
         this.description = description;
+        this.answerList = answerList;
     }
 
 
@@ -35,6 +42,14 @@ public class QuestionDto {
 
     public void setIdQuestion(int idQuestion) {
         this.idQuestion = idQuestion;
+    }
+
+    public boolean isSolved() {
+        return isSolved;
+    }
+
+    public void setSolved(boolean solved) {
+        isSolved = solved;
     }
 
     public boolean isAnswered() {
@@ -61,6 +76,11 @@ public class QuestionDto {
         this.description = description;
     }
 
+    public List<Answer> getAnswerList() {
+        return answerList;
+    }
 
-
+    public void setAnswerList(List<Answer> answerList) {
+        this.answerList = answerList;
+    }
 }
