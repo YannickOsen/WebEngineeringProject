@@ -1,4 +1,4 @@
-package project.qasystem.persistence.Entities;
+package project.qasystem.persistence.model;
 
 import javax.persistence.*;
 
@@ -17,7 +17,7 @@ public class Answer {
 
     @ManyToOne
     @JoinColumn(name="QuestionID")
-    private project.qasystem.persistence.Entities.Question question;
+    private Question question;
 
     @ManyToOne
     @JoinColumn(name="UserID")
@@ -29,7 +29,7 @@ public class Answer {
     public String getText() {return text;}
     public void setText(String text) {this.text = text;}
 
-    public project.qasystem.persistence.Entities.Question getQuestion() {return question;}
+    public Question getQuestion() {return question;}
     public void setQuestion(Question question) {this.question = question;}
 
     public User getUser() {return user;}
