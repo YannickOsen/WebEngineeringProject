@@ -1,4 +1,4 @@
-package project.qasystem.persistence.Entities;
+package project.qasystem.persistence.model;
 
 import javax.persistence.*;
 

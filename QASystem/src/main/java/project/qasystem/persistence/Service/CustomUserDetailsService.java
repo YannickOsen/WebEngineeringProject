@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import project.qasystem.persistence.model.CustomUserDetails;
-import project.qasystem.persistence.Entities.User;
+import project.qasystem.persistence.model.User;
 import project.qasystem.persistence.repositories.UserRepository;
 
 @Service
