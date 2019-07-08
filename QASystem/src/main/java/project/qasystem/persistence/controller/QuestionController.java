@@ -2,14 +2,20 @@ package project.qasystem.persistence.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import project.qasystem.persistence.Service.*;
+import project.qasystem.persistence.DTOs.QuestionDto;
+import project.qasystem.persistence.DTOs.RegistrationDto;
+import project.qasystem.persistence.Service.QuestionService;
+import project.qasystem.persistence.Service.DataBaseService;
 import project.qasystem.persistence.model.Question;
 
 
 @Controller
 @RequestMapping("/question")
 public class QuestionController {
+
+    private QuestionService questionService = new QuestionService();
 
 
     /**
@@ -68,8 +74,15 @@ public class QuestionController {
             //TODO add new webpage
             return "redirect:/home";
     }
-
-
      */
 
+
+    @PostMapping("/newQuestion")
+    public String newQeustion(@ModelAttribute("newQuestion") QuestionDto questionDto) {
+        System.out.println(questionDto.getTitle());
+        questionService.checkToCreateQuestion(questionDto);
+
+        //TODO maybe link to to the newly created question
+        return "welcome";
+    }
 }

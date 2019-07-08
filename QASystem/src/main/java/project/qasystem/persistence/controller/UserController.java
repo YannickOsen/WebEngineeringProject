@@ -4,6 +4,7 @@ import ch.qos.logback.core.net.SyslogOutputStream;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.context.request.WebRequest;
+import project.qasystem.persistence.DTOs.QuestionDto;
 import project.qasystem.persistence.DTOs.RegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -71,8 +72,9 @@ public class UserController {
         return "question";
     }
 
-    @RequestMapping("/newquestion")
-    public String newQuestion() {
+    @GetMapping("/newquestion")
+    public String newQuestion(Model model) {
+        model.addAttribute("newQuestion", new QuestionDto());
         return "newQuestion";
     }
 
