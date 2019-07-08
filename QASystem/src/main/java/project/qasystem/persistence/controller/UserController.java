@@ -1,4 +1,4 @@
-package project.qasystem.persistence.model;
+package project.qasystem.persistence.controller;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
