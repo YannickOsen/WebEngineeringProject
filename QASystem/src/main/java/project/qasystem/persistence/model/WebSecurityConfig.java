@@ -1,10 +1,7 @@
 package project.qasystem.persistence.model;
 
         import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.context.annotation.Bean;
-        import org.springframework.context.annotation.Configuration;
-        import org.springframework.context.annotation.Import;
-        import org.springframework.context.annotation.ImportResource;
+        import org.springframework.context.annotation.*;
         import org.springframework.security.authentication.AuthenticationManager;
         import org.springframework.security.authentication.AuthenticationProvider;
         import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -20,6 +17,7 @@ package project.qasystem.persistence.model;
 
 @Configuration
 @EnableWebSecurity
+@ComponentScan({"project.qasystem.persistence.controller"})
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private CustomUserDetailsService userDetailsService;
@@ -47,6 +45,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers( "/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/registration").permitAll()
+
+                .antMatchers("/logout").permitAll()
+                .antMatchers("/testpage").permitAll()
+                .antMatchers("/h2").permitAll()
+
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

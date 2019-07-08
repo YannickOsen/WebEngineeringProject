@@ -12,7 +12,6 @@ import project.qasystem.persistence.Service.UserService;
 
 import javax.validation.Valid;
 
-//TODO maybe remove url if a user mapping is not beneficial as userpages are not necessary
 @Controller
 //@RequestMapping("/user")
 public class UserController {
@@ -32,6 +31,10 @@ public class UserController {
         return "register";
     }
 
+    @GetMapping("/testpage")
+    public String testPage(){
+        return "testPage";
+    }
 
     /**
      * Brings the User to the Startup page.
@@ -41,7 +44,7 @@ public class UserController {
      */
     @RequestMapping("/home")
     //TODO create startup page for user
-    public String startUp() { return "user_startup_page"; }
+    public String startUp() { return "welcome"; }
 
     @RequestMapping("/")
     //TODO create startup page for user
