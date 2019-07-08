@@ -8,7 +8,7 @@ public class User {
 
     @Id
     @Column
-    private int id;
+    private long id;
 
     @Column(name="Username")
     private String username;
