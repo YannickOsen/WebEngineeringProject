@@ -8,25 +8,57 @@
 
     <!--<link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 
+        html, body {
+            height: 100%;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+            background-color: #e1f5fe;
+        }
+        .navbar {
+            padding: .8rem;
+        }
+        .nav-link {
+            font-size: 1.1em !important;
+        }
+        ul{
+            display: inline-block;
+        }
+        .padding {
+            padding-bottom: 2rem;
+        }
+    </style>
 </head>
 
 <body>
-
-
-
-
-<div w3-include-html="navigation.html"></div>
-<script>
-    w3.includeHTML();
-</script>
-
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="./"><p style="font-size: 2em; color: #afc2cb; margin-bottom: 0;">QQ</p></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="./">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./login">Anmelden</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./registration">Registrieren</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <div class="container-fluid padding" >
     <div class="row text-center">
         <div class="col-lg-12">
@@ -40,18 +72,12 @@
     <div class="starter-template">
         <h1>Lorem ipsum ?</h1>
         <h2>
-            <!-- <span th:text="'Welcome, ' + ${message}"></span> -->
             <p> Sing.</p>
         </h2>
     </div>
-    <h3></h3>
-    <ol>
-        <li th:each="task : ${tasks}" th:text="${task}"></li>
-    </ol>
-
 </main>
 <!-- /.container -->
 
-<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+<!--<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>-->
 </body>
 </html>
