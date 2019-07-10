@@ -93,7 +93,6 @@ public class UserController {
 //        registrationDto.userNameTest();
         String error = userService.checkToCreateUser(registrationDto);
        if (error == "") {
-           userService.createUser(registrationDto.getUserName(), registrationDto.getPassword());
            return "redirect:welcome";
        }
        return "register";
