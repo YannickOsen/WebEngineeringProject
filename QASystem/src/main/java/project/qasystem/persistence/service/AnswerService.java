@@ -1,6 +1,6 @@
-package project.qasystem.persistence.Service;
+/**package project.qasystem.persistence.service;
 
-import Entities.Answer;
+import entities.Answer;
 
 public class AnswerService {
 
@@ -15,3 +15,5 @@ public class AnswerService {
 
 
 }
+ **/
+

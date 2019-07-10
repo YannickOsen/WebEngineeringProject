@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name="Answers")
 public class Answer {
 
-    //TODO adapt remainder of Entities.Answer elements
+    //TODO adapt remainder of entities.Answer elements
 
     @Id
     @Column

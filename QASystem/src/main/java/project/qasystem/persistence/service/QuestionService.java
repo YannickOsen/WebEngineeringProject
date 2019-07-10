@@ -1,21 +1,26 @@
-package project.qasystem.persistence.Service;
+package project.qasystem.persistence.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import project.qasystem.persistence.model.Question;
 
-
+@Service
 public class QuestionService {
+
+    @Autowired
+    private DataBaseService dataBaseService;
 
 
     public Question getQuestionById(int id) {
-        return DataBaseService.getInstance().getQuestionById(id);
+        return dataBaseService.getQuestionById(id);
     }
 
 
     //TODO remove if DB variant is usable everytime.
     public void insertQuestion(String title, String description, String userName){
-        DataBaseService.getInstance().insertQuestion(title, description, userName);
+        dataBaseService.insertQuestion(title, description, userName);
     }
 
     /**
@@ -24,7 +29,7 @@ public class QuestionService {
      * @return a List of all existing Questions in the Database.
      */
     public List<Question> getAllQuestions() {
-        return DataBaseService.getInstance().getAllQuestionS();
+        return dataBaseService.getAllQuestionS();
     }
 
     /**
@@ -38,7 +43,7 @@ public class QuestionService {
         if (name == null || name.equals("")) {
             return getAllQuestions();
         } else {
-            return DataBaseService.getInstance().getQuestionListByName(name);
+            return dataBaseService.getQuestionListByName(name);
         }
     }
 
