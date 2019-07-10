@@ -1,5 +1,7 @@
 package project.qasystem.persistence.model;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,6 +10,7 @@ public class User {
 
     @Id
     @Column
+    @GeneratedValue
     private int id;
 
     @Column(name="Username")

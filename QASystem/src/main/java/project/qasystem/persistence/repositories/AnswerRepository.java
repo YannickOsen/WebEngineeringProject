@@ -5,5 +5,5 @@ package project.qasystem.persistence.repositories;
         import project.qasystem.persistence.model.Answer;
 
 @Repository
-public interface AnswerRepository extends JpaRepository<Answer, Integer> {
+public interface AnswerRepository extends JpaRepository<Answer, Long> {
 }
