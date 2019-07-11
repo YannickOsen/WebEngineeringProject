@@ -1,13 +1,18 @@
-package project.qasystem.persistence.Service;
+package project.qasystem.persistence.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import project.qasystem.persistence.DTOs.*;
-//import project.qasystem.persistence.Entities.*;
+//import project.qasystem.persistence.entities.*;
 import project.qasystem.persistence.model.User;
 
 import java.util.List;
 
+@Service
 public class UserService {
 
+    @Autowired
+    private DataBaseService dataBaseService;
 
     /**
      * returns a user with the given userName, null if not found.
@@ -16,7 +21,7 @@ public class UserService {
      * @return user with the userName.
      */
     public User getUserByUserName(String userName) {
-        return DataBaseService.getInstance().getUserByUserName(userName);
+        return dataBaseService.getUserByUserName(userName);
     }
 
 
@@ -27,7 +32,7 @@ public class UserService {
      * @param password encoded password.
      */
     public void createUser(String userName, String password) {
-        DataBaseService.getInstance().insertUser(userName, password);
+        dataBaseService.insertUser(userName, password);
     }
 
     /**
@@ -61,6 +66,6 @@ public class UserService {
      * @return a list of all users in the system.
      */
     public List<User> getAllUsers() {
-        return DataBaseService.getInstance().getAllUsers();
+        return dataBaseService.getAllUsers();
     }
 }

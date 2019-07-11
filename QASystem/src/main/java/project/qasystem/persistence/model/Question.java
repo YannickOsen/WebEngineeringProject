@@ -8,7 +8,7 @@ public class Question {
 
     @Id
     @Column
-    private int id;
+    private long id;
 
     @Column
     private String text;
@@ -19,11 +19,11 @@ public class Question {
 
     public Question() {}
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(long id) { this.id = id; }
 
     public String getText() { return text; }
 

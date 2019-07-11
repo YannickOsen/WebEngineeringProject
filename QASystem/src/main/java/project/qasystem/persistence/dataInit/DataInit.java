@@ -1,6 +1,6 @@
-package project.qasystem.persistence.dataInit;
+/**package project.qasystem.persistence.dataInit;
 
-import project.qasystem.persistence.Service.*;
+import project.qasystem.persistence.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,8 +15,8 @@ public class DataInit {
     // Variables used to configure the Application
     private final boolean alwaysClearDb = true;
     private final boolean fillWithExampleData = true;
+ **/
 
-    private static final Logger log = LoggerFactory.getLogger(DataInit.class);
 
 
     /*
@@ -43,7 +43,7 @@ public class DataInit {
     }*/
 
 
-    public DataInit() {
+  /**  public DataInit() {
         initiateDatabase();
     }
 
@@ -52,7 +52,7 @@ public class DataInit {
         return null;
     }
 
-    private void initiateDatabase() {
+ /**   private void initiateDatabase() {
         initTables();
         // create addAdmin() if necessary;
         if (fillWithExampleData) {
@@ -63,7 +63,7 @@ public class DataInit {
     }
 
 
-    private void initTables() {
+ /**   private void initTables() {
         DataBaseService.getInstance().createTables();
     }
 
@@ -94,3 +94,4 @@ public class DataInit {
     }
 
 }
+   **/

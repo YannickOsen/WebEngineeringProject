@@ -8,11 +8,10 @@ package project.qasystem.persistence.model;
         import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
         import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
         import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-        import project.qasystem.persistence.Service.CustomUserDetailsService;
+        import project.qasystem.persistence.service.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
-@ComponentScan({"project.qasystem.persistence.controller"})
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -54,6 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/newquestion").permitAll()
 
                 .antMatchers("/logout").permitAll()
+                .antMatchers("/logout/").permitAll()
                 .antMatchers("/testpage").permitAll()
                 .antMatchers("/console/*").permitAll()
 

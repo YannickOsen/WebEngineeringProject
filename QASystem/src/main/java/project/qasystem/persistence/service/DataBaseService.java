@@ -1,10 +1,11 @@
-package project.qasystem.persistence.Service;
+package project.qasystem.persistence.service;
 
 
-import Entities.Answer;
+import entities.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import project.qasystem.persistence.model.User;
+import org.springframework.stereotype.Service;
 import project.qasystem.persistence.model.Question;
 import project.qasystem.persistence.model.User;
 import project.qasystem.persistence.repositories.UserRepository;
@@ -14,10 +15,8 @@ import java.util.List;
 /**
  * Singleton Data Access Object which handles all queries with the Database.
  */
+@Service
 public class DataBaseService {
-
-    @Autowired
-    private static DataBaseService instance;
 
     @Autowired
     private UserRepository userRepository;
@@ -32,7 +31,7 @@ public class DataBaseService {
      *
      * @return Instance of this Singleton.
      */
-    public static DataBaseService getInstance() {
+/**    public static DataBaseService getInstance() {
         if (instance == null) {
             instance = new DataBaseService();
             return instance;
@@ -40,6 +39,7 @@ public class DataBaseService {
             return instance;
         }
     }
+ **/
 
     public Question getQuestionById(int id){
         //TODO connection to DB

@@ -3,7 +3,7 @@ package project.qasystem.persistence.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import project.qasystem.persistence.Service.*;
+import project.qasystem.persistence.service.*;
 import project.qasystem.persistence.model.Question;
 
 
@@ -20,7 +20,7 @@ public class QuestionController {
      * @param userName userName of the user.
      */
     public void createQuestionString (String title, String description, String userName) {
-        DataBaseService.getInstance().insertQuestion(title, description, userName);
+      //  DataBaseService.getInstance().insertQuestion(title, description, userName);
     }
 
     /**
