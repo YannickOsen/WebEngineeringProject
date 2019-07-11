@@ -6,6 +6,7 @@ package project.qasystem.persistence.repositories;
         import project.qasystem.persistence.model.Question;
         import project.qasystem.persistence.model.User;
 
+        import java.util.Collection;
         import java.util.List;
 
 @Repository
@@ -15,4 +16,5 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
         List<Question> findByUser(User user);
         List<Question> findByIsAnswered(boolean isAnswered);
         List<Question> findAllByOrderByDateDesc();
+        List<Question> findByTitle(String title);
 }

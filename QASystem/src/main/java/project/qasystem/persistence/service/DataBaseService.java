@@ -94,8 +94,7 @@ public class DataBaseService {
     }
 
     public List<User> getAllUsers(){
-        //TODO DB connection;
-        return null;
+        return userRepository.findAll();
     }
 
     public List<Question> getAllQuestions(){
@@ -103,12 +102,19 @@ public class DataBaseService {
         //TODO DB
     }
 
-
-    public List<Question> getQuestionListByName(String name) {
-        if (name != null && !name.isEmpty()) {
-            //TODO DB
+    /**
+     * Looks for questions with a specific String in its title/username.
+     * @param search The string to be searched for.
+     * @return The list of questions containing the searched string.
+     */
+    public List<Question> getQuestionListByName(String search) {
+        List<Question> resultList = null;
+        if (search != null && !search.isEmpty()) {
+            User user = userRepository.findByUsername(search);
+            resultList.addAll(questionRepository.findByUser(user));
+            resultList.addAll(questionRepository.findByTitle(search));
         }
-        return null;
+        return resultList;
     }
 
     /**
