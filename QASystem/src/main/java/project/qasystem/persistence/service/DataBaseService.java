@@ -95,7 +95,7 @@ public class DataBaseService {
         return null;
     }
 
-    public List<Question> getAllQuestionS(){
+    public List<Question> getAllQuestions(){
         return null;
         //TODO DB
     }

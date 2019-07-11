@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import project.qasystem.persistence.service.*;
 import project.qasystem.persistence.model.Question;
 
+import java.util.List;
+
 
 @Controller
 @RequestMapping("/question")
@@ -56,6 +58,13 @@ public class QuestionController {
         }
     }
 
+    @PostMapping(value = {"/searchQuestion"})
+    public String getExistingQuestions(String name, Model model) {
+        QuestionService service = new QuestionService();
+        List<Question> toReturn = service.getQuestionListByName(name);
+        model.addAttribute("listOfQuestions", toReturn);
+        return "questionList";
+    }
 
     /**
      * Handles Post-requests for questions.
