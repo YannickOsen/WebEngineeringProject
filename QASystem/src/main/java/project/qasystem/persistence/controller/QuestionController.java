@@ -3,11 +3,8 @@ package project.qasystem.persistence.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import project.qasystem.persistence.DTOs.QuestionDto;
-import project.qasystem.persistence.DTOs.QuestionDto;
-import project.qasystem.persistence.DTOs.RegistrationDto;
 import project.qasystem.persistence.service.*;
 import project.qasystem.persistence.model.Question;
 
@@ -32,15 +29,15 @@ public class QuestionController {
     }
 
     @GetMapping("/newquestion")
-    public String showRegistrationForm(Model model) {
+    public String showQuestionForm(Model model) {
         model.addAttribute("newQuestion", new QuestionDto());
         return "newQuestion";
     }
 
     @PostMapping("/newquestion")
-    public String registration(@ModelAttribute("newquestion") QuestionDto questionDto) {
+    public String newQuestion(@ModelAttribute("newQuestion") QuestionDto questionDto) {
         questionService.insertQuestion(questionDto.getTitle(), questionDto.getDescription(), questionDto.getUserName());
-        return "newQuestion";
+        return "questionList";
     }
 
     /**
