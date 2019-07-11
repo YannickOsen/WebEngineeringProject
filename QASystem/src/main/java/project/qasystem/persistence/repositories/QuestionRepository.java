@@ -1,5 +1,6 @@
 package project.qasystem.persistence.repositories;
 
+        import org.springframework.data.domain.Sort;
         import org.springframework.data.jpa.repository.JpaRepository;
         import org.springframework.stereotype.Repository;
         import project.qasystem.persistence.model.Question;
@@ -12,5 +13,5 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
 
         List<Question> findByUser(User user);
         List<Question> findByIsAnswered(boolean isAnswered);
-        List<Question> findAllByDateDesc();
+        List<Question> findAllByOrderByDateAsc();
 }
