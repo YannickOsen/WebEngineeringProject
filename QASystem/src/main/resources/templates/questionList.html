@@ -115,7 +115,7 @@
                 <!--- th:onclick="'javascript:rowClicked(\'' + ${questionList.getId()} + '\');'"-->
                 <tr th:each="questionList : ${listOfQuestions}">
                     <td th:text="${questionList.getDate()}"></td>
-                    <td th:text="${questionList.getAuthor()}"></td>
+                    <td th:text="${questionList.getUser()}"></td>
                     <td th:text="${questionList.getTitle()}"></td>
                     <td th:text="${questionList.getText()}"></td>
                     <td th:text="${questionList.getIsAnswered()}"></td>
