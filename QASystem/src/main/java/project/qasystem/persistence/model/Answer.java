@@ -6,11 +6,11 @@ import javax.persistence.*;
 @Table(name="Answers")
 public class Answer {
 
-    //TODO adapt remainder of Entities.Answer elements
+    //TODO adapt remainder of entities.Answer elements
 
     @Id
     @Column
-    private int id;
+    private long id;
 
     @Column
     private String text;
@@ -23,8 +23,8 @@ public class Answer {
     @JoinColumn(name="UserID")
     private User user;
 
-    public int getId() {return id;}
-    public void setId(int id) {this.id = id;}
+    public long getId() {return id;}
+    public void setId(long id) {this.id = id;}
 
     public String getText() {return text;}
     public void setText(String text) {this.text = text;}
