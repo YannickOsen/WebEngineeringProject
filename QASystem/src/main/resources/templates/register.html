@@ -104,7 +104,10 @@
         Passwort erneut eingeben:<br>
         <input th:field="*{confirmPassword}" id="confirmPassword" type="password" name="confirmPassword" placeholder="Passwort bestätigen">
         <br><br>
-        <input type="submit" value="Submit">
+<!--        <div hidden>-->
+            <input type="submit" value="Submit" id="submitButton">
+<!--        </div>-->
+<!--        <input onclick="checkNoDuplicateUserName()">-->
     </form>
     </div>
     </div>
@@ -112,6 +115,35 @@
 </main>
 <!-- /.container -->
 
+<datalist id="existingUserNames" hidden>
+    <option hidden th:each="name : ${allUserNames}" th:value="${name}" th:text="${name}"/>
+</datalist>
+
+<script>
+    /**
+     * Checks if a user with the same name already exists
+     * */
+    function checkNoDuplicateUserName(){
+        console.log("checkNoDuplicateUserName: entered");
+        var listLength = document.getElementById("existingUserNames").options.length;
+        var passesTest = true;
+        console.log("checkNoDuplicateUserName: Current ID:" +document.getElementById("username").value);
+        if(document.getElementById("username").value != (null || "")){
+            for (var i = 0; i < listLength; i++){
+                if (document.getElementById("username").value == document.getElementById("existingUserNames").options[i].value){
+                    passesTest = false;
+                    alert("Dieser Name ist bereits für einen User vergeben. Bitte wähle einen anderen.");
+                }
+            }
+            console.log("checkNoDuplicateUserName: case: exiting");
+        } else {
+            passesTest = false;
+        }
+        if (passesTest){
+            document.getElementById("submitButton").click();
+        }
+    }
+</script>
 <!--<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>-->
 </body>
 </html>

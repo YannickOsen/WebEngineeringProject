@@ -33,11 +33,6 @@ public class UserController {
         return "register";
     }
 
-    @GetMapping("/testpage")
-    public String testPage(){
-        return "testPage";
-    }
-
     /**
      * Brings the User to the Startup page.
      *

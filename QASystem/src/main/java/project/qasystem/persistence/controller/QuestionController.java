@@ -6,17 +6,19 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import project.qasystem.persistence.DTOs.QuestionDto;
+import project.qasystem.persistence.DTOs.QuestionDto;
 import project.qasystem.persistence.DTOs.RegistrationDto;
 import project.qasystem.persistence.service.*;
 import project.qasystem.persistence.model.Question;
+
+import java.util.List;
 
 
 @Controller
 public class QuestionController {
 
     @Autowired
-    private QuestionService questionService;
-
+    QuestionService questionService;
 
     /**
      * Creates a question with the title, description and userName
@@ -26,7 +28,7 @@ public class QuestionController {
      * @param userName userName of the user.
      */
     public void createQuestionString (String title, String description, String userName) {
-      //  DataBaseService.getInstance().insertQuestion(title, description, userName);
+      questionService.insertQuestion(title, description, userName);
     }
 
     @GetMapping("/newquestion")
@@ -71,6 +73,13 @@ public class QuestionController {
         }
     }
 
+    @PostMapping(value = {"/searchQuestion"})
+    public String getExistingQuestions(String name, Model model) {
+        QuestionService service = new QuestionService();
+        List<Question> toReturn = service.getQuestionListByName(name);
+        model.addAttribute("listOfQuestions", toReturn);
+        return "questionList";
+    }
 
     /**
      * Handles Post-requests for questions.

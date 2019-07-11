@@ -1,6 +1,7 @@
 package project.qasystem.persistence.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="Answers")
@@ -23,8 +24,24 @@ public class Answer {
     @JoinColumn(name="UserID")
     private User user;
 
+
+    @Column
+    private boolean isAcceptedAnswer;
+
+    @Column
+    private Date date;
+
+    public Answer(Question question, String text, User user) {
+        this.question = question;
+        this.text = text;
+        this.user = user;
+        this.date = new Date();
+        this.isAcceptedAnswer = false;
+    }
+
     public long getId() {return id;}
     public void setId(long id) {this.id = id;}
+
 
     public String getText() {return text;}
     public void setText(String text) {this.text = text;}
@@ -36,4 +53,6 @@ public class Answer {
     public void setUser(User user) {this.user = user;}
 
 
+    public void setIsAcceptedAnswer(boolean isAcceptedAnswer) { this.isAcceptedAnswer = isAcceptedAnswer;
+    }
 }

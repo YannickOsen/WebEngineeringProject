@@ -1,6 +1,7 @@
 package project.qasystem.persistence.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="Questions")
@@ -8,7 +9,11 @@ public class Question {
 
     @Id
     @Column
+    @GeneratedValue
     private long id;
+
+    @Column
+    private String title;
 
     @Column
     private String text;
@@ -17,19 +22,48 @@ public class Question {
     @JoinColumn(name="UserId")
     private User user;
 
-    public Question() {}
+    @Column
+    private Date date;
+
+    @Column
+    private boolean isAnswered;
+
+    @Column
+    private boolean isSolved;
+
+    public Question(String title, String text, User user) {
+        this.id = id;
+        this.title = title;
+        this.text = text;
+        this.user = user;
+        this.date = new Date();
+        this.isAnswered = false;
+        this.isSolved = false;
+
+    }
 
     public long getId() {
         return id;
     }
-
     public void setId(long id) { this.id = id; }
 
-    public String getText() { return text; }
+    public Date getDate() {return date;}
+    public void setDate(Date date) {this.date = date;}
 
+    public String getTitle() {return title;}
+    public void setTitle(String title) {this.title = title;}
+
+    public String getText() { return text; }
     public void setText(String text) { this.text = text; }
 
-    public User getAuthor() { return user; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 
-    public void setAuthor(User user) { this.user = user; }
+    public boolean getIsAnswered() {return isAnswered;}
+    public void setIsAnswered(boolean isAnswered) {this.isAnswered = isAnswered;}
+
+    public boolean getIsSolved() {return isAnswered;}
+    public void setIsSolved(boolean isSolved) {this.isAnswered = isSolved;}
+
+
 }

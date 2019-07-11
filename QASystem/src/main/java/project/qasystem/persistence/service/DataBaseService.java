@@ -1,13 +1,16 @@
 package project.qasystem.persistence.service;
 
 
-import entities.Answer;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import project.qasystem.persistence.model.User;
 import org.springframework.stereotype.Service;
+import project.qasystem.persistence.model.Answer;
 import project.qasystem.persistence.model.Question;
 import project.qasystem.persistence.model.User;
+import project.qasystem.persistence.repositories.AnswerRepository;
+import project.qasystem.persistence.repositories.QuestionRepository;
 import project.qasystem.persistence.repositories.UserRepository;
 
 import java.util.List;
@@ -22,35 +25,21 @@ public class DataBaseService {
     private UserRepository userRepository;
 
     @Autowired
+    private QuestionRepository questionRepository;
+
+    @Autowired
+    private AnswerRepository answerRepository;
+
+   @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-
-    /**
-     * Returns the Instance of this Singleton.
-     * If there is none a Instance is created.
-     *
-     * @return Instance of this Singleton.
-     */
-/**    public static DataBaseService getInstance() {
-        if (instance == null) {
-            instance = new DataBaseService();
-            return instance;
-        } else {
-            return instance;
-        }
-    }
- **/
-
-    public Question getQuestionById(int id){
-        //TODO connection to DB
-        return null;
+   
+    public Question getQuestionById(long id){
+        return questionRepository.findById(id);
     }
 
 
-    public Answer getAnswerById(int id){
-        //TODO connection to DB
-        Answer answer = new Answer();
-        return answer;
+    public Answer getAnswerById(long id){
+        return answerRepository.findById(id);
     }
 
     public void createTables(){
@@ -74,30 +63,40 @@ public class DataBaseService {
         //TODO Questions/Answers of this user
     }
 
-    public void insertQuestion(String title, String description, String userName){
-        //TODO DB connection; Maybe needs answers
+    public void insertQuestion(String title, String text, String userName){
+        User user = userRepository.findByUsername(userName);
+        Question question = new Question(title, text, user);
+        questionRepository.save(question);
     }
 
-    public void insertAnswer(int questionID, String answerContent, String userNameAnswering){
-        //TODO DB connection;
+    public void insertAnswer(long questionId, String text, String userName){
+        Question question = questionRepository.findById(questionId);
+        User user = userRepository.findByUsername(userName);
+        Answer answer = new Answer(question, text, user);
+        answerRepository.save(answer);
     }
 
     public List<User> getAllUsers(){
-        //TODO DB connection;
-        return null;
+        return userRepository.findAll();
     }
 
-    public List<Question> getAllQuestionS(){
-        return null;
-        //TODO DB
+    public List<Question> getAllQuestions(){
+        return questionRepository.findAll();
     }
 
-
-    public List<Question> getQuestionListByName(String name) {
-        if (name != null && !name.isEmpty()) {
-            //TODO DB
+    /**
+     * Looks for questions with a specific String in its title/username.
+     * @param search The string to be searched for.
+     * @return The list of questions containing the searched string.
+     */
+    public List<Question> getQuestionListByName(String search) {
+        List<Question> resultList = null;
+        if (search != null && !search.isEmpty()) {
+            User user = userRepository.findByUsername(search);
+            resultList.addAll(questionRepository.findByUser(user));
+            resultList.addAll(questionRepository.findByTitle(search));
         }
-        return null;
+        return resultList;
     }
 
     /**
@@ -105,25 +104,23 @@ public class DataBaseService {
      * Marks the Question as Answered
      *
      * @param answerID ID of the answer that tries +to solve this question.
-
+    */
     public void addAnswer(int answerID){
         Answer currentAnswer = getAnswerById(answerID);
-        Question answeredQuestion = getQuestionById(currentAnswer.getIdQuestion());
-        answeredQuestion.setAnswered(true);
-        List<Answer> currentAnswerList = answeredQuestion.getAnswerList();
-        currentAnswerList.set(currentAnswerList.size(),getAnswerById(answerID)) ;
-        //TODO update question back to databse
+        Question answeredQuestion = currentAnswer.getQuestion();
+        answeredQuestion.setIsAnswered(true);
     }
-     */
+
     /**
      * Adds the Answer to the answered Questions answerList
      * Marks the Question as Answered
      *
-     * @param answerID ID of the answer that solved this question.
-    public void questionSolved(int answerID){
-        getAnswerById(answerID).setAcceptedAnswer(true);
-        getQuestionById(getAnswerById(answerID).getIdQuestion()).setAnswered(true);
+     * @param answerId ID of the answer that solved this question.
+     * */
+    public void questionSolved(int answerId){
+        getAnswerById(answerId).setIsAcceptedAnswer(true);
+        getAnswerById(answerId).getQuestion().setIsAnswered(true);
     }
 
-     */
+
 }

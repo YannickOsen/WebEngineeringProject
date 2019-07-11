@@ -88,20 +88,41 @@
                 <input type="checkbox" checked style="margin: 5px;">Beantwortete Fragen</input>
                 <input type="checkbox" checked style="margin: 5px;">Unbeantwortete Fragen</input>
             </div>
-            <div class="col-md-6 mt-5">
-                <ul>
-                    <li>Frage 1</li>
-                    <li>Frage 2</li>
-                    <li>Frage 3</li>
-                </ul>
-            </div>
-            <div class="col-md-6 mt-5">
-                <ul>
-                    <li>Frage 4</li>
-                    <li>Frage 5</li>
-                    <li>Frage 6</li>
-                </ul>
-            </div>
+
+
+            <table id="planTable" class="table table-bordered table-condensed"
+                   data-toggle="table">
+                <thead>
+                <tr>
+                    <th data-field="date" data-sortable="true">
+                        Datum
+                    </th>
+                    <th data-field="username" data-sortable="true">
+                        Author
+                    </th>
+                    <th data-field="title" data-sortable="true">
+                        Title
+                    </th>
+                    <th data-field="isAnswered" data-sortable="true">
+                        Beantwortet
+                    </th>
+                    <th data-field="isSolved" data-sortable="true">
+                        Gelöst
+                    </th>
+                </tr>
+                </thead>
+                <tbody id="myTable">
+                <!--- th:onclick="'javascript:rowClicked(\'' + ${questionList.getId()} + '\');'"-->
+                <tr th:each="questionList : ${listOfQuestions}">
+                    <td th:text="${questionList.getDate()}"></td>
+                    <td th:text="${questionList.getAuthor()}"></td>
+                    <td th:text="${questionList.getTitle()}"></td>
+                    <td th:text="${questionList.getText()}"></td>
+                    <td th:text="${questionList.getIsAnswered()}"></td>
+                    <td th:text="${questionList.getIsSolved()}"></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </main>
