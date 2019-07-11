@@ -15,6 +15,7 @@ package project.qasystem.persistence.model;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
     private CustomUserDetailsService userDetailsService;
 
     @Bean
@@ -29,7 +30,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        userDetailsService = new CustomUserDetailsService();
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
 
@@ -54,6 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/newquestion").permitAll()
 
                 .antMatchers("/logout").permitAll()
+                .antMatchers("/logout/").permitAll()
                 .antMatchers("/testpage").permitAll()
                 .antMatchers("/console/*").permitAll()
 
