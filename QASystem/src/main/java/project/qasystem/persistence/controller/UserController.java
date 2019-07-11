@@ -1,5 +1,6 @@
 package project.qasystem.persistence.controller;
 
+
 import org.springframework.validation.BindingResult;
 import project.qasystem.persistence.DTOs.RegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import project.qasystem.persistence.service.UserService;
+
 
 @Controller
 public class UserController {
@@ -54,10 +56,19 @@ public class UserController {
         return "signin";
     }
 
-    @RequestMapping("/logout")
-    public String logout() {
-
+    @RequestMapping("/login_successful")
+    public String loginSuccess() {
         return "welcome";
+    }
+
+    @RequestMapping("/registration_successful")
+    public String registrationSuccess() {
+        return "welcome";
+    }
+
+    @RequestMapping("/logout_successful")
+    public String logoutSuccess() {
+        return "signin";
     }
 
     @RequestMapping("/questionlist")
@@ -89,7 +100,7 @@ public class UserController {
         System.out.println(registrationDto.getUserName());
         String error = userService.checkToCreateUser(registrationDto);
        if (error == "") {
-           return "welcome";
+           return "redirect:/registration_successful";
        }
        return "register";
     }

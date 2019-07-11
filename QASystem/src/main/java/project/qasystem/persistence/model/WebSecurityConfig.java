@@ -50,10 +50,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/questionlist").permitAll()
                 .antMatchers("/question").permitAll()
-                .antMatchers("/newquestion").permitAll()
+//                .antMatchers("/newquestion").permitAll()
 
                 .antMatchers("/logout").permitAll()
-                .antMatchers("/logout/").permitAll()
+//                .antMatchers("/logout/").permitAll()
                 .antMatchers("/testpage").permitAll()
                 .antMatchers("/console/*").permitAll()
 
@@ -64,6 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
+                .logoutSuccessUrl("/logout_successful")
                 .permitAll()
                 .clearAuthentication(true);
     }
