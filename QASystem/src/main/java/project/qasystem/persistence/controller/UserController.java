@@ -83,9 +83,6 @@ public class UserController {
      */
     @PostMapping("/registration")
     public String registration(@ModelAttribute("registration") RegistrationDto registrationDto, BindingResult result) {
-/*      registrationDto.setUserName(username);
-        registrationDto.setPassword(password);
-        registrationDto.setConfirmPassword(confirmPassword);*/
         if (result.hasErrors()) {
             return "register";
         }
