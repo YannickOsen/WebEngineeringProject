@@ -1,6 +1,8 @@
 package project.qasystem.persistence.DTOs;
 
-import entities.Answer;
+
+
+import project.qasystem.persistence.model.Answer;
 
 import java.util.List;
 
