@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import project.qasystem.persistence.model.User;
 import org.springframework.stereotype.Service;
+import project.qasystem.persistence.DTOs.QuestionDto;
 import project.qasystem.persistence.model.Answer;
 import project.qasystem.persistence.model.Question;
 import project.qasystem.persistence.model.User;
@@ -13,6 +14,7 @@ import project.qasystem.persistence.repositories.AnswerRepository;
 import project.qasystem.persistence.repositories.QuestionRepository;
 import project.qasystem.persistence.repositories.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -80,8 +82,22 @@ public class DataBaseService {
         return userRepository.findAll();
     }
 
-    public List<Question> getAllQuestions(){
-        return questionRepository.findAll();
+    public List<QuestionDto> getAllQuestions(){
+        List<QuestionDto> questionDtos = new ArrayList<>();
+        List<Question> questions = questionRepository.findAll();
+        QuestionDto questionDto;
+        for (Question question: questions) {
+            questionDto = new QuestionDto();
+            questionDto.setTitle(question.getTitle());
+            questionDto.setDescription(question.getText());
+            questionDto.setAnswered(question.getIsAnswered());
+            questionDto.setSolved(question.getIsSolved());
+            questionDto.setUserName("user"); // Todo get username from question
+//            questionDto.setUserName(question.getUser().getUsername());
+            questionDto.setDate(question.getDate());
+            questionDtos.add(questionDto);
+        }
+        return questionDtos;
     }
 
     /**
