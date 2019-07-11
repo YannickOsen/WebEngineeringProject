@@ -3,15 +3,15 @@ package project.qasystem.persistence.model;
 import org.hibernate.annotations.IndexColumn;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="Answers")
 public class Answer {
 
-    //TODO adapt remainder of entities.Answer elements
-
     @Id
     @Column
+    @GeneratedValue
     private long id;
 
     @Column
@@ -28,6 +28,16 @@ public class Answer {
     @Column
     private boolean isAcceptedAnswer;
 
+    @Column
+    private Date date;
+
+    public Answer(Question question, String text, User user) {
+        this.question = question;
+        this.text = text;
+        this.user = user;
+        this.date = new Date();
+        this.isAcceptedAnswer = false;
+    }
 
     public long getId() {return id;}
     public void setId(long id) {this.id = id;}
@@ -43,4 +53,7 @@ public class Answer {
 
     public boolean getIsAcceptedAnswer() {return isAcceptedAnswer;}
     public void setIsAcceptedAnswer(boolean isAcceptedAnswer) {this.isAcceptedAnswer = isAcceptedAnswer;}
+
+    public Date getDate() {return date;}
+    public void setDate(Date date) {this.date = date;}
 }

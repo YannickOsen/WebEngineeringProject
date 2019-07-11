@@ -38,6 +38,7 @@ public class Question {
         this.user = user;
         this.date = new Date();
         this.isAnswered = false;
+        this.isSolved = false;
 
     }
 

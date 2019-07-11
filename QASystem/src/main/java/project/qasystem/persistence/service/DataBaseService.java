@@ -86,8 +86,11 @@ public class DataBaseService {
         questionRepository.save(question);
     }
 
-    public void insertAnswer(int questionID, String answerContent, String userNameAnswering){
-        //TODO DB connection;
+    public void insertAnswer(long questionId, String text, String userName){
+        Question question = questionRepository.findById(questionId);
+        User user = userRepository.findByUsername(userName);
+        Answer answer = new Answer(question, text, user);
+        answerRepository.save(answer);
     }
 
     public List<User> getAllUsers(){
