@@ -91,7 +91,7 @@
     <div class="container-fluid padding" >
         <div class="row text-center">
             <div class="col-lg-12">
-                <form th:action="@{/newquestion}" th:object="${newQuestion}" name="questionForm" onsubmit="return validateForm()" method="post">
+                <form th:action="@{/newquestion}" th:object="${newQuestion}" name="questionForm" onsubmit="return validateForm()" modelAttribute="newquestion" method="post">
                     <p>Gib deine Frage ein:</p></p><br>
                     <input th:field="*{title}" id="questionTitle" type="text" name="questionTitle" class="col-sm-6 col-md-4" style="height: 50px;" placeholder="Titel"><br>
                     <input th:field="*{description}" id="questionDescription" type="text" name="questionDescription" class="col-sm-6 col-md-4" style="height: 200px;" placeholder="Beschreibung">

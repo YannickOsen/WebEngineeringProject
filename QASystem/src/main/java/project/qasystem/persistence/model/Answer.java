@@ -53,6 +53,5 @@ public class Answer {
     public void setUser(User user) {this.user = user;}
 
 
-    public void setIsAcceptedAnswer(boolean isAcceptedAnswer) { this.isAcceptedAnswer = isAcceptedAnswer;
-    }
+    public void setIsAcceptedAnswer(boolean isAcceptedAnswer) { this.isAcceptedAnswer = isAcceptedAnswer;  }
 }
