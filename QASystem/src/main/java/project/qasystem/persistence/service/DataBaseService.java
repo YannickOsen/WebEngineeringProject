@@ -32,24 +32,7 @@ public class DataBaseService {
 
    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-
-    /**
-     * Returns the Instance of this Singleton.
-     * If there is none a Instance is created.
-     *
-     * @return Instance of this Singleton.
-     */
-/**    public static DataBaseService getInstance() {
-        if (instance == null) {
-            instance = new DataBaseService();
-            return instance;
-        } else {
-            return instance;
-        }
-    }
- **/
-
+   
     public Question getQuestionById(long id){
         return questionRepository.findById(id);
     }
