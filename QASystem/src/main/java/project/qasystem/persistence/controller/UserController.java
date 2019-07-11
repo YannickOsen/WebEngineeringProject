@@ -1,5 +1,6 @@
 package project.qasystem.persistence.controller;
 
+
 import org.springframework.validation.BindingResult;
 import project.qasystem.persistence.DTOs.RegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import project.qasystem.persistence.service.UserService;
 
+
 @Controller
 public class UserController {
 
+    @Autowired
     private final UserService userService;
 
     @Autowired
@@ -26,8 +29,7 @@ public class UserController {
 
     @GetMapping("/registration")
     public String showRegistrationForm(Model model) {
-        RegistrationDto registrationDto = registrationDto();
-        model.addAttribute("registration", new RegistrationDto());
+        model.addAttribute("registration", registrationDto());
         return "register";
     }
 
@@ -50,10 +52,19 @@ public class UserController {
         return "signin";
     }
 
-    @RequestMapping("/logout")
-    public String logout() {
-
+    @RequestMapping("/login_successful")
+    public String loginSuccess() {
         return "welcome";
+    }
+
+    @RequestMapping("/registration_successful")
+    public String registrationSuccess() {
+        return "welcome";
+    }
+
+    @RequestMapping("/logout_successful")
+    public String logoutSuccess() {
+        return "signin";
     }
 
     @RequestMapping("/questionlist")
@@ -66,11 +77,6 @@ public class UserController {
         return "question";
     }
 
-    @RequestMapping("/newquestion")
-    public String newQuestion() {
-        return "newQuestion";
-    }
-
     /**
      * Brings the User to the registration page.
      *
@@ -78,14 +84,13 @@ public class UserController {
      * @return "user_startup_page" to navigate to the page.
      */
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("registration") RegistrationDto registrationDto, BindingResult result, Model model) {
+    public String registration(@ModelAttribute("registration") RegistrationDto registrationDto, BindingResult result) {
         if (result.hasErrors()) {
             return "register";
         }
         String error = userService.checkToCreateUser(registrationDto);
-        model.addAttribute("allUserNames", userService.getAllUsers());
-        if (error == "") {
-           return "welcome";
+       if (error == "") {
+           return "redirect:/registration_successful";
        }
        return "register";
     }

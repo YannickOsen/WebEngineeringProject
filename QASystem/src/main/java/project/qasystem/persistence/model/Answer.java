@@ -1,7 +1,5 @@
 package project.qasystem.persistence.model;
 
-import org.hibernate.annotations.IndexColumn;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -9,9 +7,10 @@ import java.util.Date;
 @Table(name="Answers")
 public class Answer {
 
+    //TODO adapt remainder of entities.Answer elements
+
     @Id
     @Column
-    @GeneratedValue
     private long id;
 
     @Column
@@ -24,6 +23,7 @@ public class Answer {
     @ManyToOne
     @JoinColumn(name="UserID")
     private User user;
+
 
     @Column
     private boolean isAcceptedAnswer;
@@ -42,6 +42,7 @@ public class Answer {
     public long getId() {return id;}
     public void setId(long id) {this.id = id;}
 
+
     public String getText() {return text;}
     public void setText(String text) {this.text = text;}
 
@@ -51,9 +52,7 @@ public class Answer {
     public User getUser() {return user;}
     public void setUser(User user) {this.user = user;}
 
-    public boolean getIsAcceptedAnswer() {return isAcceptedAnswer;}
-    public void setIsAcceptedAnswer(boolean isAcceptedAnswer) {this.isAcceptedAnswer = isAcceptedAnswer;}
 
-    public Date getDate() {return date;}
-    public void setDate(Date date) {this.date = date;}
+    public void setIsAcceptedAnswer(boolean isAcceptedAnswer) { this.isAcceptedAnswer = isAcceptedAnswer;
+    }
 }

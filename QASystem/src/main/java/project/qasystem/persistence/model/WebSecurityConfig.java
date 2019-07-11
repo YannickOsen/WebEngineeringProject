@@ -7,7 +7,6 @@ package project.qasystem.persistence.model;
         import org.springframework.security.config.annotation.web.builders.HttpSecurity;
         import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
         import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-        //        import org.springframework.security.core.userdetails.UserDetailsService;
         import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
         import project.qasystem.persistence.service.CustomUserDetailsService;
 
@@ -48,10 +47,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/questionlist").permitAll()
                 .antMatchers("/question").permitAll()
-                .antMatchers("/newquestion").permitAll()
 
                 .antMatchers("/logout").permitAll()
-                .antMatchers("/logout/").permitAll()
+                .antMatchers("/testpage").permitAll()
                 .antMatchers("/console/*").permitAll()
 
                 .anyRequest().authenticated()
@@ -61,6 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
+                .logoutSuccessUrl("/logout_successful")
                 .permitAll()
                 .clearAuthentication(true);
     }

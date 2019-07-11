@@ -35,6 +35,22 @@
             padding-bottom: 2rem;
         }
     </style>
+    <script>
+    function validateForm() {
+    var name = document.forms["registerForm"]["name"].value;
+    var pw = document.forms["registerForm"]["password"].value;
+    var cpw = document.forms["registerForm"]["confirmPassword"].value;
+
+
+    if (name == "" || pw == "" || cpw == "") {
+        alert("Bitte fülle alle Felder aus.");
+        return false;
+    } else if (pw != cpw) {
+        alert("Die Passwörter müssen übereinstimmen!");
+        return false;
+    }
+    }
+    </script>
 </head>
 
 <body>
@@ -78,7 +94,7 @@
     <div class="container-fluid padding" >
         <div class="row text-center">
             <div class="col-lg-12">
-    <form th:action="@{/registration}" th:object="${registration}" method="post">
+    <form th:action="@{/registration}" th:object="${registration}" name="registerForm" onsubmit="return validateForm()" method="post">
         Name:<br>
         <input th:field="*{userName}" id="username" type="text" name="name" placeholder="Nickname">
         <br>
@@ -86,12 +102,12 @@
         <input th:field="*{password}" id="password" type="password" name="password" placeholder="Passwort">
         <br>
         Passwort erneut eingeben:<br>
-        <input th:field="*{confirmPassword}" id="confirmPassword" type="password" name="password" placeholder="Passwort bestätigen">
+        <input th:field="*{confirmPassword}" id="confirmPassword" type="password" name="confirmPassword" placeholder="Passwort bestätigen">
         <br><br>
-        <div hidden>
+<!--        <div hidden>-->
             <input type="submit" value="Submit" id="submitButton">
-        </div>
-        <input onclick="checkNoDuplicateUserName()">
+<!--        </div>-->
+<!--        <input onclick="checkNoDuplicateUserName()">-->
     </form>
     </div>
     </div>
