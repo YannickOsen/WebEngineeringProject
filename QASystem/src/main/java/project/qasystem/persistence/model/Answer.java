@@ -1,5 +1,7 @@
 package project.qasystem.persistence.model;
 
+import org.hibernate.annotations.IndexColumn;
+
 import javax.persistence.*;
 
 @Entity
@@ -23,6 +25,10 @@ public class Answer {
     @JoinColumn(name="UserID")
     private User user;
 
+    @Column
+    private boolean isAcceptedAnswer;
+
+
     public long getId() {return id;}
     public void setId(long id) {this.id = id;}
 
@@ -35,5 +41,6 @@ public class Answer {
     public User getUser() {return user;}
     public void setUser(User user) {this.user = user;}
 
-
+    public boolean getIsAcceptedAnswer() {return isAcceptedAnswer;}
+    public void setIsAcceptedAnswer(boolean isAcceptedAnswer) {this.isAcceptedAnswer = isAcceptedAnswer;}
 }
