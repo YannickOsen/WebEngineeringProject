@@ -39,11 +39,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
         http
 
-
                 //TODO remove csrf.disable after H2 has be configured correctly
                 .csrf().disable()
-
-
 
                 .authorizeRequests()
                 .antMatchers( "/").permitAll()
