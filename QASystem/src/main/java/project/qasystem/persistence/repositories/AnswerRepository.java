@@ -11,6 +11,7 @@ package project.qasystem.persistence.repositories;
 @Repository
 public interface AnswerRepository extends JpaRepository<Answer, Long> {
 
+        Answer findById(long id);
         List<Answer> findByQuestion(Question question);
         List<Answer> findByUser(User user);
         List<Answer> findByIsAcceptedAnswer(boolean isAcceptedAnswer);

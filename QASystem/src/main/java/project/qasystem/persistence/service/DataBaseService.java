@@ -1,13 +1,16 @@
 package project.qasystem.persistence.service;
 
 
-import entities.Answer;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import project.qasystem.persistence.model.User;
 import org.springframework.stereotype.Service;
+import project.qasystem.persistence.model.Answer;
 import project.qasystem.persistence.model.Question;
 import project.qasystem.persistence.model.User;
+import project.qasystem.persistence.repositories.AnswerRepository;
+import project.qasystem.persistence.repositories.QuestionRepository;
 import project.qasystem.persistence.repositories.UserRepository;
 
 import java.util.List;
@@ -22,6 +25,12 @@ public class DataBaseService {
     private UserRepository userRepository;
 
     @Autowired
+    private QuestionRepository questionRepository;
+
+    @Autowired
+    private AnswerRepository answerRepository;
+
+   @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
@@ -41,16 +50,13 @@ public class DataBaseService {
     }
  **/
 
-    public Question getQuestionById(int id){
-        //TODO connection to DB
-        return null;
+    public Question getQuestionById(long id){
+        return questionRepository.findById(id);
     }
 
 
-    public Answer getAnswerById(int id){
-        //TODO connection to DB
-        Answer answer = new Answer();
-        return answer;
+    public Answer getAnswerById(long id){
+        return answerRepository.findById(id);
     }
 
     public void createTables(){
@@ -74,8 +80,10 @@ public class DataBaseService {
         //TODO Questions/Answers of this user
     }
 
-    public void insertQuestion(String title, String description, String userName){
-        //TODO DB connection; Maybe needs answers
+    public void insertQuestion(String title, String text, String userName){
+        User user = userRepository.findByUsername(userName);
+        Question question = new Question(title, text, user);
+        questionRepository.save(question);
     }
 
     public void insertAnswer(int questionID, String answerContent, String userNameAnswering){

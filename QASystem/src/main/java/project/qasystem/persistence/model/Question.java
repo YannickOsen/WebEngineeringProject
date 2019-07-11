@@ -9,6 +9,7 @@ public class Question {
 
     @Id
     @Column
+    @GeneratedValue
     private long id;
 
     @Column
@@ -27,7 +28,15 @@ public class Question {
     @Column
     private boolean isAnswered;
 
-    public Question() {}
+    public Question(String title, String text, User user) {
+        this.id = id;
+        this.title = title;
+        this.text = text;
+        this.user = user;
+        this.date = new Date();
+        this.isAnswered = false;
+
+    }
 
     public long getId() {
         return id;
@@ -43,8 +52,8 @@ public class Question {
     public String getText() { return text; }
     public void setText(String text) { this.text = text; }
 
-    public User getAuthor() { return user; }
-    public void setAuthor(User user) { this.user = user; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 
     public boolean getIsAnswered() {return isAnswered;}
     public void setIsAnswered(boolean isAnswered) {this.isAnswered = isAnswered;}

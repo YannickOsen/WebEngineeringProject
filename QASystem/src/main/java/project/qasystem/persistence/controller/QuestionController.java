@@ -1,5 +1,6 @@
 package project.qasystem.persistence.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,8 @@ import project.qasystem.persistence.model.Question;
 @RequestMapping("/question")
 public class QuestionController {
 
+    @Autowired
+    QuestionService questionService;
 
     /**
      * Creates a question with the title, description and userName
@@ -20,7 +23,7 @@ public class QuestionController {
      * @param userName userName of the user.
      */
     public void createQuestionString (String title, String description, String userName) {
-      //  DataBaseService.getInstance().insertQuestion(title, description, userName);
+      questionService.insertQuestion(title, description, userName);
     }
 
     /**
