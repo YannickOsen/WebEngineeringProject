@@ -35,6 +35,16 @@
             padding-bottom: 2rem;
         }
     </style>
+    <script>
+        function validateForm() {
+            var name = document.forms["signinForm"]["username"].value;
+            var pw = document.forms["signinForm"]["password"].value;
+            if (name == "" || pw == "") {
+                alert("Bitte Name und Passwort eingeben.");
+                return false;
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -61,6 +71,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="./registration">Registrieren</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./logout">Abmelden</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -78,7 +91,7 @@
     <div class="container-fluid padding" >
         <div class="row text-center">
             <div class="col-lg-12">
-    <form th:action="@{/login}" method="post">
+    <form th:action="@{/login}" name="signinForm" onsubmit="return validateForm()" method="post">
         Name:<br>
         <input type="text" name="username" placeholder="Nickname">
         <br>

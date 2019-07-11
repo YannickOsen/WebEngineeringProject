@@ -35,6 +35,16 @@
             padding-bottom: 2rem;
         }
     </style>
+    <script>
+    function validateForm() {
+    var ans = document.forms["answerForm"]["answer"].value;
+
+    if (ans == "") {
+    alert("Gib bitte eine Antwort ein.");
+    return false;
+    }
+    }
+    </script>
 </head>
 
 <body>
@@ -61,6 +71,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="./registration">Registrieren</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./logout">Abmelden</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -76,10 +89,27 @@
 
 <main role="main" class="container">
     <div class="starter-template">
+
+        <!-- question header -->
         <h1>Lorem ipsum ?</h1>
+
+        <!-- question description -->
+        <p>corden est...</p>
+        <br><br>
+
+        <!-- List all answers -->
         <h2>
             <p> Sing.</p>
         </h2>
+
+        <!-- if a user is logged if, he/she/it can create an answer -->
+        <form th:action="@{/newQuestion}" th:object="${newQuestion}" name="answerForm" onsubmit="return validateForm()" method="post">
+            <p>Deine Antwort:</p></p><br>
+            <input th:field="*{answer}" id="answer" type="text" name="answer" class="col-sm-6 col-md-4" style="height: 100px;" placeholder="Antwort...">
+            <br><br>
+            <input type="submit" value="Antworten">
+        </form>
+
     </div>
 </main>
 <!-- /.container -->
