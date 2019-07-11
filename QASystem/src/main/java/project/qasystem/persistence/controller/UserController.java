@@ -31,11 +31,6 @@ public class UserController {
         return "register";
     }
 
-    @GetMapping("/testpage")
-    public String testPage(){
-        return "testPage";
-    }
-
     /**
      * Brings the User to the Startup page.
      *
@@ -83,14 +78,13 @@ public class UserController {
      * @return "user_startup_page" to navigate to the page.
      */
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("registration") RegistrationDto registrationDto, BindingResult result) {
+    public String registration(@ModelAttribute("registration") RegistrationDto registrationDto, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "register";
         }
-        System.out.println(registrationDto.getUserName());
-//        registrationDto.userNameTest();
         String error = userService.checkToCreateUser(registrationDto);
-       if (error == "") {
+        model.addAttribute("allUserNames", userService.getAllUsers());
+        if (error == "") {
            return "welcome";
        }
        return "register";
