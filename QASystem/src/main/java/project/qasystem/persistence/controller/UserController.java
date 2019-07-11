@@ -83,7 +83,7 @@ public class UserController {
             return "register";
         }
         String error = userService.checkToCreateUser(registrationDto);
-        model.addAttribute("allUserNames", userService.getAllUsers());
+        model.addAttribute("allUser", userService.getAllUsers());
         if (error == "") {
            return "welcome";
        }

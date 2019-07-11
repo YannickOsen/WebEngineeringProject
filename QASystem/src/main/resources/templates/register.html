@@ -35,6 +35,22 @@
             padding-bottom: 2rem;
         }
     </style>
+    <script>
+    function validateForm() {
+    var name = document.forms["registerForm"]["name"].value;
+    var pw = document.forms["registerForm"]["password"].value;
+    var cpw = document.forms["registerForm"]["confirmPassword"].value;
+
+
+    if (name == "" || pw == "" || cpw == "") {
+        alert("Bitte fülle alle Felder aus.");
+        return false;
+    } else if (pw != cpw) {
+        alert("Die Passwörter müssen übereinstimmen!");
+        return false;
+    }
+    }
+    </script>
 </head>
 
 <body>
@@ -78,7 +94,7 @@
     <div class="container-fluid padding" >
         <div class="row text-center">
             <div class="col-lg-12">
-    <form th:action="@{/registration}" th:object="${registration}" method="post">
+    <form th:action="@{/registration}" th:object="${registration}" name="registerForm" onsubmit="return validateForm()" method="post" id="postForm">
         Name:<br>
         <input th:field="*{userName}" id="username" type="text" name="name" placeholder="Nickname">
         <br>
@@ -86,12 +102,12 @@
         <input th:field="*{password}" id="password" type="password" name="password" placeholder="Passwort">
         <br>
         Passwort erneut eingeben:<br>
-        <input th:field="*{confirmPassword}" id="confirmPassword" type="password" name="password" placeholder="Passwort bestätigen">
+        <input th:field="*{confirmPassword}" id="confirmPassword" type="password" name="confirmPassword" placeholder="Passwort bestätigen">
         <br><br>
         <div hidden>
             <input type="submit" value="Submit" id="submitButton">
         </div>
-        <input onclick="checkNoDuplicateUserName()">
+        <input type="button" onclick="checkNoDuplicateUserName()" value="Submit">
     </form>
     </div>
     </div>
@@ -99,22 +115,42 @@
 </main>
 <!-- /.container -->
 
-<datalist id="existingUserNames" hidden>
-    <option hidden th:each="name : ${allUserNames}" th:value="${name}" th:text="${name}"/>
-</datalist>
+<div hidden>
+    <table id="planTable" class="table table-bordered table-condensed"
+           data-toggle="table">
+        <thead>
+        <tr>
+            <td>username</td>
+            <td>id on this page</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user, stats: ${allUser}">
+            <td th:id="username + ${stats.index}" th:text="${user.getUsername()}" ></td>
+            <td th:text="${user.getUsername()} + ${stats.index}" ></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 <script>
+    document.onload(checkNoDuplicateUserName());
+
     /**
      * Checks if a user with the same name already exists
      * */
     function checkNoDuplicateUserName(){
         console.log("checkNoDuplicateUserName: entered");
-        var listLength = document.getElementById("existingUserNames").options.length;
+        var tableSize= document.getElementById("planTable").rows.length - 1;
+        console.log("listLength: " + tableSize);
         var passesTest = true;
         console.log("checkNoDuplicateUserName: Current ID:" +document.getElementById("username").value);
         if(document.getElementById("username").value != (null || "")){
-            for (var i = 0; i < listLength; i++){
-                if (document.getElementById("username").value == document.getElementById("existingUserNames").options[i].value){
+            for (var i = 0; i < tableSize; i++){
+                var id = "username" + i;
+                console.log("ID: " + id);
+                console.log(document.getElementById(id).innerHTML);
+                if (document.getElementById("username").value == document.getElementById(id).innerHTML){
                     passesTest = false;
                     alert("Dieser Name ist bereits für einen User vergeben. Bitte wähle einen anderen.");
                 }
@@ -124,7 +160,7 @@
             passesTest = false;
         }
         if (passesTest){
-            document.getElementById("submitButton").click();
+            document.getElementById("postForm").submit();
         }
     }
 </script>
