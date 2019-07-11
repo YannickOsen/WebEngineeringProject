@@ -38,7 +38,7 @@ public class QuestionController {
     }
 
     @PostMapping("/newquestion")
-    public String registration(@ModelAttribute("newquestion") QuestionDto questionDto) {
+    public String registration(@ModelAttribute("newQuestion") QuestionDto questionDto) {
         questionService.insertQuestion(questionDto.getTitle(), questionDto.getDescription(), questionDto.getUserName());
         return "newQuestion";
     }
