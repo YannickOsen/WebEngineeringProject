@@ -83,7 +83,7 @@ public class UserController {
      * @return "user_startup_page" to navigate to the page.
      */
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("registration") RegistrationDto registrationDto, BindingResult result) {
+    public String registration(@ModelAttribute("registration") RegistrationDto registrationDto, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "register";
         }
