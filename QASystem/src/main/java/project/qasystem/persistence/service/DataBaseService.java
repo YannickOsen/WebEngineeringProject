@@ -98,8 +98,7 @@ public class DataBaseService {
     }
 
     public List<Question> getAllQuestions(){
-        return null;
-        //TODO DB
+        return questionRepository.findAll();
     }
 
     /**
@@ -122,25 +121,23 @@ public class DataBaseService {
      * Marks the Question as Answered
      *
      * @param answerID ID of the answer that tries +to solve this question.
-
+    */
     public void addAnswer(int answerID){
         Answer currentAnswer = getAnswerById(answerID);
-        Question answeredQuestion = getQuestionById(currentAnswer.getIdQuestion());
-        answeredQuestion.setAnswered(true);
-        List<Answer> currentAnswerList = answeredQuestion.getAnswerList();
-        currentAnswerList.set(currentAnswerList.size(),getAnswerById(answerID)) ;
-        //TODO update question back to databse
+        Question answeredQuestion = currentAnswer.getQuestion();
+        answeredQuestion.setIsAnswered(true);
     }
-     */
+
     /**
      * Adds the Answer to the answered Questions answerList
      * Marks the Question as Answered
      *
-     * @param answerID ID of the answer that solved this question.
-    public void questionSolved(int answerID){
-        getAnswerById(answerID).setAcceptedAnswer(true);
-        getQuestionById(getAnswerById(answerID).getIdQuestion()).setAnswered(true);
+     * @param answerId ID of the answer that solved this question.
+     * */
+    public void questionSolved(int answerId){
+        getAnswerById(answerId).setIsAcceptedAnswer(true);
+        getAnswerById(answerId).getQuestion().setIsAnswered(true);
     }
 
-     */
+
 }
