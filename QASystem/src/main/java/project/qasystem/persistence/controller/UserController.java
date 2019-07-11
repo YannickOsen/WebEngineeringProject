@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import project.qasystem.persistence.service.UserService;
 
-
 @Controller
 public class UserController {
 
@@ -84,15 +83,16 @@ public class UserController {
      * @return "user_startup_page" to navigate to the page.
      */
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("registration") RegistrationDto registrationDto, BindingResult result) {
+    public String registration(@ModelAttribute("registration") RegistrationDto registrationDto, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "register";
         }
         String error = userService.checkToCreateUser(registrationDto);
-       if (error == "") {
-           return "redirect:/registration_successful";
-       }
-       return "register";
+        model.addAttribute("allUser", userService.getAllUsers());
+        if (error == "") {
+            return "redirect:/registration_successful";
+        }
+        return "register";
     }
 
 
