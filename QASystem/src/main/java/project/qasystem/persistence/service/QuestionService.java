@@ -1,5 +1,6 @@
 package project.qasystem.persistence.service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class QuestionService {
      * @return a List of all existing Questions in the Database.
      */
     public List<Question> getAllQuestions() {
-        return dataBaseService.getAllQuestionS();
+        return dataBaseService.getAllQuestions();
     }
 
     /**
@@ -46,6 +47,5 @@ public class QuestionService {
             return dataBaseService.getQuestionListByName(name);
         }
     }
-
 
 }

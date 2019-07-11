@@ -27,6 +27,9 @@ public class Question {
     @Column
     private boolean isAnswered;
 
+    @Column
+    private boolean isSolved;
+
     public Question() {}
 
     public long getId() {
@@ -48,4 +51,9 @@ public class Question {
 
     public boolean getIsAnswered() {return isAnswered;}
     public void setIsAnswered(boolean isAnswered) {this.isAnswered = isAnswered;}
+
+    public boolean getIsSolved() {return isAnswered;}
+    public void setIsSolved(boolean isSolved) {this.isAnswered = isSolved;}
+
+
 }
