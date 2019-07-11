@@ -1,15 +1,21 @@
 package project.qasystem.persistence.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import project.qasystem.persistence.DTOs.QuestionDto;
+import project.qasystem.persistence.DTOs.RegistrationDto;
 import project.qasystem.persistence.service.*;
 import project.qasystem.persistence.model.Question;
 
 
 @Controller
-@RequestMapping("/question")
 public class QuestionController {
+
+    @Autowired
+    private QuestionService questionService;
 
 
     /**
@@ -21,6 +27,18 @@ public class QuestionController {
      */
     public void createQuestionString (String title, String description, String userName) {
       //  DataBaseService.getInstance().insertQuestion(title, description, userName);
+    }
+
+    @GetMapping("/newquestion")
+    public String showRegistrationForm(Model model) {
+        model.addAttribute("newQuestion", new QuestionDto());
+        return "newQuestion";
+    }
+
+    @PostMapping("/newquestion")
+    public String registration(@ModelAttribute("newquestion") QuestionDto questionDto) {
+        questionService.insertQuestion(questionDto.getTitle(), questionDto.getDescription(), questionDto.getUserName());
+        return "newQuestion";
     }
 
     /**

@@ -13,6 +13,7 @@ import project.qasystem.persistence.service.UserService;
 @Controller
 public class UserController {
 
+    @Autowired
     private final UserService userService;
 
     @Autowired
@@ -81,11 +82,6 @@ public class UserController {
         return "question";
     }
 
-    @RequestMapping("/newquestion")
-    public String newQuestion() {
-        return "newQuestion";
-    }
-
     /**
      * Brings the User to the registration page.
      *
@@ -97,7 +93,6 @@ public class UserController {
         if (result.hasErrors()) {
             return "register";
         }
-        System.out.println(registrationDto.getUserName());
         String error = userService.checkToCreateUser(registrationDto);
        if (error == "") {
            return "redirect:/registration_successful";
