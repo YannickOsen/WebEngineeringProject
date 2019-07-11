@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import project.qasystem.persistence.service.UserService;
 
-
 @Controller
 public class UserController {
 
@@ -89,10 +88,11 @@ public class UserController {
             return "register";
         }
         String error = userService.checkToCreateUser(registrationDto);
-       if (error == "") {
-           return "redirect:/registration_successful";
-       }
-       return "register";
+        model.addAttribute("allUser", userService.getAllUsers());
+        if (error == "") {
+            return "redirect:/registration_successful";
+        }
+        return "register";
     }
 
 
