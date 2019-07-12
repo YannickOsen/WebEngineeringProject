@@ -45,11 +45,6 @@
             return false;
         }
     }
-
-    function emptyForm() {
-        var form = document.getElementById("answerForm");
-        form.reset();
-    }
     </script>
 </head>
 
@@ -113,7 +108,7 @@
             <p>Deine Antwort:</p></p><br>
             <input th:field="*{text}" id="text" type="text" name="answer" class="col-sm-6 col-md-4" style="height: 100px;" placeholder="Antwort...">
             <br><br>
-            <input type="submit" onclick="emptyForm()" value="Antworten">
+            <input type="submit" value="Antworten">
         </form>
 
     </div>

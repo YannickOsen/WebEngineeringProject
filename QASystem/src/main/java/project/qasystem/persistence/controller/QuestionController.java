@@ -80,7 +80,7 @@ public class QuestionController {
     @PostMapping("/answerquestion")
     public String answerQuestion(@ModelAttribute("answer") AnswerDTO answerDTO) {
         questionService.insertAnswer(answerDTO.getAuthorName(), answerDTO.getIdQuestion(), answerDTO.getText());
-        return "question";
+        return "redirect:/answerquestion";
     }
 
     @GetMapping("/questionlist")
