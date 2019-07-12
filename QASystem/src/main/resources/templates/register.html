@@ -35,22 +35,6 @@
             padding-bottom: 2rem;
         }
     </style>
-    <script>
-    function validateForm() {
-    var name = document.forms["registerForm"]["name"].value;
-    var pw = document.forms["registerForm"]["password"].value;
-    var cpw = document.forms["registerForm"]["confirmPassword"].value;
-
-
-    if (name == "" || pw == "" || cpw == "") {
-        alert("Bitte fülle alle Felder aus.");
-        return false;
-    } else if (pw != cpw) {
-        alert("Die Passwörter müssen übereinstimmen!");
-        return false;
-    }
-    }
-    </script>
 </head>
 
 <body>
@@ -94,7 +78,7 @@
     <div class="container-fluid padding" >
         <div class="row text-center">
             <div class="col-lg-12">
-    <form th:action="@{/registration}" th:object="${registration}" name="registerForm" onsubmit="return validateForm()" method="post" id="postForm">
+    <form th:action="@{/registration}" th:object="${registration}" name="registerForm" method="post" id="postForm">
         Name:<br>
         <input th:field="*{userName}" id="username" type="text" name="name" placeholder="Nickname">
         <br>
@@ -160,6 +144,25 @@
             passesTest = false;
         }
         if (passesTest){
+            validateForm()
+
+        }
+    }
+</script>
+
+<script>
+    function validateForm() {
+        var name = document.forms["registerForm"]["name"].value;
+        var pw = document.forms["registerForm"]["password"].value;
+        var cpw = document.forms["registerForm"]["confirmPassword"].value;
+
+        if (name == "" || pw == "" || cpw == "") {
+            alert("Bitte fülle alle Felder aus.");
+            return false;
+        } else if (pw != cpw) {
+            alert("Die Passwörter müssen übereinstimmen!");
+            return false;
+        } else {
             document.getElementById("postForm").submit();
         }
     }

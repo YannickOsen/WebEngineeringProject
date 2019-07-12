@@ -119,7 +119,7 @@
                 <tr th:each="questionList : ${listOfQuestions}">
                     <td th:text="${questionList.getDate()  }"></td>
                     <td th:text="${questionList.getUserName()}"></td>
-                    <td th:text="${questionList.getTitle()}"></td>
+                    <td><a th:text="${questionList.getTitle()}" href="/questionContent"></a></td>
                     <td th:text="${questionList.getDescription()}"></td>
                     <td th:text="${questionList.isAnswered()}"></td>
                     <td th:text="${questionList.isSolved()}"></td>
