@@ -57,16 +57,14 @@ public class QuestionController {
         try {
             idInt = Integer.parseInt(id);
         } catch (NumberFormatException excception) {
-            model.addAttribute("error", "Das war keine gültige ID!");
-            return "error";
+            return "welcome";
         }
         Question toGet = service.getQuestionById(idInt);
         if (toGet == null) {
-            model.addAttribute("error", "Übung nicht gefunden!");
-            return "error";
+            return "welcome";
         } else {
-            model.addAttribute("Question", toGet);
-            return "Question";
+            model.addAttribute("thisQuestion", toGet);
+            return "question";
         }
     }
 
