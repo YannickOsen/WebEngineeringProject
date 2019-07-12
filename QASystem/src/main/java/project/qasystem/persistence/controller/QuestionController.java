@@ -8,6 +8,7 @@ import project.qasystem.persistence.DTOs.QuestionDto;
 import project.qasystem.persistence.service.*;
 import project.qasystem.persistence.model.Question;
 
+import java.lang.reflect.Parameter;
 import java.util.List;
 
 
@@ -73,6 +74,41 @@ public class QuestionController {
     @GetMapping("/questionlist")
     public String getQuestions(Model model) {
         List<QuestionDto> toReturn = questionService.getAllQuestions();
+        model.addAttribute("listOfQuestions", toReturn);
+        return "questionList";
+    }
+
+    @GetMapping("/searchquestion")
+    public String getQuestionsByCheckbox(@RequestParam("search") String value,
+                                         @RequestParam(value = "solved", required = false) String solved,
+                                         @RequestParam(value = "notsolved", required = false) String notsolved,
+                                         @RequestParam(value = "answered", required = false) String answered,
+                                         @RequestParam(value = "notanswered", required = false) String notanswered,
+                                         @RequestParam(value = "myquestions", required = false) String myquestions, Model model) {
+        List<QuestionDto> toReturn = null;
+        if (value == "") {
+            if (solved != null && notsolved != null && answered != null && notanswered != null && myquestions != null) {
+                toReturn = questionService.getAllQuestions();
+            }
+            if (solved != null && notsolved == null && answered == null && notanswered == null && myquestions == null) {
+                toReturn = questionService.getsolvedQuestions();
+            }
+            if (solved == null && notsolved != null && answered == null && notanswered == null && myquestions == null) {
+                toReturn = questionService.getunsolvedQuestions();
+            }
+            if (solved == null && notsolved == null && answered != null && notanswered == null && myquestions == null) {
+                toReturn = questionService.getansweredQuestions();
+            }
+            if (solved == null && notsolved == null && answered == null && notanswered != null && myquestions == null) {
+                toReturn = questionService.getnotansweredQuestions();
+            }
+            if (solved != null && notsolved == null && answered != null && notanswered == null && myquestions != null) {
+                toReturn = null;
+            }
+        } else {
+            toReturn = questionService.getQuestionsByTitle(value);
+        }
+
         model.addAttribute("listOfQuestions", toReturn);
         return "questionList";
     }
