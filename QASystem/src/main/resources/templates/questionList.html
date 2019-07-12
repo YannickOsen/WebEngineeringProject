@@ -81,12 +81,16 @@
     <div class="container-fluid padding" >
         <div class="row text-center">
             <div class="col-lg-12">
-                <input type="text" placeholder="Frage suchen...">
+                <form  th:action="@{/searchquestion}" method="get">
+                <input type="text" placeholder="Frage suchen..." name="search">
+                <input type="submit" value="Suchen">
                 <p>Filter:</p>
-                <input type="checkbox" checked style="margin: 5px;">Gelöste Fragen</input>
-                <input type="checkbox" checked style="margin: 5px;">Ungelöst Fragen</input><br>
-                <input type="checkbox" checked style="margin: 5px;">Beantwortete Fragen</input>
-                <input type="checkbox" checked style="margin: 5px;">Unbeantwortete Fragen</input>
+                <input type="checkbox" checked style="margin: 5px;" name="solved">Gelöste Fragen</input>
+                <input type="checkbox" checked style="margin: 5px;" name="notsolved">Ungelöst Fragen</input><br>
+                <input type="checkbox" checked style="margin: 5px;" name="answered">Beantwortete Fragen</input>
+                <input type="checkbox" checked style="margin: 5px;" name="notanswered">Unbeantwortete Fragen</input>
+                    <input type="checkbox" checked style="margin: 5px;" name="myquestions">Meine Fragen</input>
+                </form>
             </div>
 
 

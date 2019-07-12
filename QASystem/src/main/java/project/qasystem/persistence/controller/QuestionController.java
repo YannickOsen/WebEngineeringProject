@@ -8,7 +8,6 @@ import project.qasystem.persistence.DTOs.QuestionDto;
 import project.qasystem.persistence.service.*;
 import project.qasystem.persistence.model.Question;
 
-import java.lang.reflect.Parameter;
 import java.util.List;
 
 
@@ -112,31 +111,4 @@ public class QuestionController {
         model.addAttribute("listOfQuestions", toReturn);
         return "questionList";
     }
-
-
-/*    @PostMapping(value = {"/searchQuestion"})
-    public String getExistingQuestions(String name, Model model) {
-        List<Question> toReturn = questionService.getQuestionListByName(name);
-        model.addAttribute("listOfQuestions", toReturn);
-        return "questionList";
-    }*/
-
-    /**
-     * Handles Post-requests for questions.
-     * Creates a new Question in the Database with the information provided by the user.
-     *
-     * @param question Question with data Thymeleaf provides.
-     * @param model Model Thymeleaf uses.
-     * @return redirects to the new webpage
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public String postQuestion(@ModelAttribute("Question") Question question, Model model) {
-        QuestionService service = new QuestionService();
-            service.insertQuestion(question.getTitle(), question.getDescription(),question.getUserName());
-            //TODO add new webpage
-            return "redirect:/home";
-    }
-
-
-     */
-
 }

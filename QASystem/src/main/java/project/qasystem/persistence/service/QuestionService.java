@@ -31,7 +31,31 @@ public class QuestionService {
      * @return a List of all existing Questions in the Database.
      */
     public List<QuestionDto> getAllQuestions() {
-        return dataBaseService.getAllQuestions();
+        return dataBaseService.getAllQuestions("all", "");
+    }
+
+    public List<QuestionDto> getQuestionsByTitle(String value) {
+        return dataBaseService.getAllQuestions("title", value);
+    }
+
+    public List<QuestionDto> getunsolvedQuestions() {
+        return dataBaseService.getAllQuestions("notsolved", "");
+    }
+
+    public List<QuestionDto> getsolvedQuestions() {
+        return dataBaseService.getAllQuestions("solved", "");
+    }
+
+    public List<QuestionDto> getansweredQuestions() {
+        return dataBaseService.getAllQuestions("answered", "");
+    }
+
+    public List<QuestionDto> getnotansweredQuestions() {
+        return dataBaseService.getAllQuestions("notanswered", "");
+    }
+
+    public List<QuestionDto> getuserQuestions() {
+        return dataBaseService.getAllQuestions("myquestions", "");
     }
 
     /**

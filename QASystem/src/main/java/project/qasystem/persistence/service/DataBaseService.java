@@ -82,9 +82,26 @@ public class DataBaseService {
         return userRepository.findAll();
     }
 
-    public List<QuestionDto> getAllQuestions(){
+    public List<QuestionDto> getAllQuestions(String search, String input){
         List<QuestionDto> questionDtos = new ArrayList<>();
-        List<Question> questions = questionRepository.findAll();
+        List<Question> questions = null;
+        switch (search) {
+            case "all": questions = questionRepository.findAll();
+                        break;
+            case "title": questions = questionRepository.findByTitle(input);
+                            break;
+            case "solved": questions = questionRepository.findByIsSolved(true);
+                            break;
+            case "notsolved": questions = questionRepository.findByIsSolved(false);
+                               break;
+            case "answered": questions = questionRepository.findByIsAnswered(true);
+                             break;
+            case "notanswered": questions = questionRepository.findByIsAnswered(false);
+                                break;
+            case "myqeustions": questions = questionRepository.findByUser(null); // Todo search by current user
+                                  break;
+        }
+
         QuestionDto questionDto;
         for (Question question: questions) {
             questionDto = new QuestionDto();

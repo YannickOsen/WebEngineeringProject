@@ -17,4 +17,5 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
         List<Question> findByIsAnswered(boolean isAnswered);
         List<Question> findAllByOrderByDateDesc();
         List<Question> findByTitle(String title);
+        List<Question> findByIsSolved(boolean isSolved);
 }
