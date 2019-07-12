@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import project.qasystem.persistence.DTOs.AnswerDTO;
 import project.qasystem.persistence.DTOs.QuestionDto;
 import project.qasystem.persistence.service.*;
 import project.qasystem.persistence.model.Question;
@@ -68,6 +69,12 @@ public class QuestionController {
             model.addAttribute("Question", toGet);
             return "Question";
         }
+    }
+
+    @GetMapping("/answerquestion")
+    public String showAnswerForm(Model model) {
+        model.addAttribute("answer", new AnswerDTO());
+        return "question";
     }
 
     @GetMapping("/questionlist")

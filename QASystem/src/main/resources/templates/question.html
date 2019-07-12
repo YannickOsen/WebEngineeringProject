@@ -103,9 +103,9 @@
         </h2>
 
         <!-- if a user is logged if, he/she/it can create an answer -->
-        <form th:action="@{/newQuestion}" th:object="${newQuestion}" name="answerForm" onsubmit="return validateForm()" method="post">
+        <form th:action="@{/answerquestion}" th:object="${answer}" name="answerForm" onsubmit="return validateForm()" method="post">
             <p>Deine Antwort:</p></p><br>
-            <input th:field="*{answer}" id="answer" type="text" name="answer" class="col-sm-6 col-md-4" style="height: 100px;" placeholder="Antwort...">
+            <input th:field="*{text}" id="text" type="text" name="answer" class="col-sm-6 col-md-4" style="height: 100px;" placeholder="Antwort...">
             <br><br>
             <input type="submit" value="Antworten">
         </form>
