@@ -42,6 +42,10 @@ public class Question {
 
     }
 
+    public Question() {
+
+    }
+
     public long getId() {
         return id;
     }

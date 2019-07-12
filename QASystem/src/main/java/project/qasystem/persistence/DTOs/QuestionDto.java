@@ -4,6 +4,7 @@ package project.qasystem.persistence.DTOs;
 
 import project.qasystem.persistence.model.Answer;
 
+import java.util.Date;
 import java.util.List;
 
 public class QuestionDto {
@@ -14,9 +15,10 @@ public class QuestionDto {
     private String title;
     private String description;
     private List<Answer> answerList;
+    private Date date;
     //TODO maybe integrate "isAnswered" into Answerlist
 
-    public QuestionDto(String userName, int idQuestion, boolean isAnswered, boolean isSolved, String title, String description, List<Answer> answerList){
+    public QuestionDto(String userName, int idQuestion, boolean isAnswered, boolean isSolved, String title, String description, List<Answer> answerList, Date date){
         this.userName = userName;
         this.idQuestion = idQuestion;
         this.isAnswered = isAnswered;
@@ -24,6 +26,7 @@ public class QuestionDto {
         this.title = title;
         this.description = description;
         this.answerList = answerList;
+        this.date = date;
     }
 
 
@@ -84,5 +87,13 @@ public class QuestionDto {
 
     public void setAnswerList(List<Answer> answerList) {
         this.answerList = answerList;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

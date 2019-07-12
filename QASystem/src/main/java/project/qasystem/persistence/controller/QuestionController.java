@@ -37,7 +37,7 @@ public class QuestionController {
     @PostMapping("/newquestion")
     public String newQuestion(@ModelAttribute("newQuestion") QuestionDto questionDto) {
         questionService.insertQuestion(questionDto.getTitle(), questionDto.getDescription(), questionDto.getUserName());
-        return "questionList";
+        return "redirect:/questionlist";
     }
 
     /**
@@ -70,13 +70,20 @@ public class QuestionController {
         }
     }
 
-    @PostMapping(value = {"/searchQuestion"})
-    public String getExistingQuestions(String name, Model model) {
-        QuestionService service = new QuestionService();
-        List<Question> toReturn = service.getQuestionListByName(name);
+    @GetMapping("/questionlist")
+    public String getQuestions(Model model) {
+        List<QuestionDto> toReturn = questionService.getAllQuestions();
         model.addAttribute("listOfQuestions", toReturn);
         return "questionList";
     }
+
+
+/*    @PostMapping(value = {"/searchQuestion"})
+    public String getExistingQuestions(String name, Model model) {
+        List<Question> toReturn = questionService.getQuestionListByName(name);
+        model.addAttribute("listOfQuestions", toReturn);
+        return "questionList";
+    }*/
 
     /**
      * Handles Post-requests for questions.

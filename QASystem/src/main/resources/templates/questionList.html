@@ -103,6 +103,9 @@
                     <th data-field="title" data-sortable="true">
                         Title
                     </th>
+                    <th data-field="description" data-sortable="true">
+                        Beschreibung
+                    </th>
                     <th data-field="isAnswered" data-sortable="true">
                         Beantwortet
                     </th>
@@ -114,12 +117,12 @@
                 <tbody id="myTable">
                 <!--- th:onclick="'javascript:rowClicked(\'' + ${questionList.getId()} + '\');'"-->
                 <tr th:each="questionList : ${listOfQuestions}">
-                    <td th:text="${questionList.getDate()}"></td>
-                    <td th:text="${questionList.getAuthor()}"></td>
+                    <td th:text="${questionList.getDate()  }"></td>
+                    <td th:text="${questionList.getUserName()}"></td>
                     <td th:text="${questionList.getTitle()}"></td>
-                    <td th:text="${questionList.getText()}"></td>
-                    <td th:text="${questionList.getIsAnswered()}"></td>
-                    <td th:text="${questionList.getIsSolved()}"></td>
+                    <td th:text="${questionList.getDescription()}"></td>
+                    <td th:text="${questionList.isAnswered()}"></td>
+                    <td th:text="${questionList.isSolved()}"></td>
                 </tr>
                 </tbody>
             </table>

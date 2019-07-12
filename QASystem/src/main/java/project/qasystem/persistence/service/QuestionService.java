@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import project.qasystem.persistence.DTOs.QuestionDto;
 import project.qasystem.persistence.model.Question;
 
 @Service
@@ -29,7 +30,7 @@ public class QuestionService {
      *
      * @return a List of all existing Questions in the Database.
      */
-    public List<Question> getAllQuestions() {
+    public List<QuestionDto> getAllQuestions() {
         return dataBaseService.getAllQuestions();
     }
 
@@ -40,11 +41,12 @@ public class QuestionService {
      * @param name Name to search for; if left blank returns all Questions.
      * @return List of matching Questions; null if nothing was found.
      */
-    public List<Question> getQuestionListByName(String name) {
+    public List<QuestionDto> getQuestionListByName(String name) {
         if (name == null || name.equals("")) {
             return getAllQuestions();
         } else {
-            return dataBaseService.getQuestionListByName(name);
+            return null;
+//            return dataBaseService.getQuestionListByName(name);
         }
     }
 
