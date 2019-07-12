@@ -12,11 +12,12 @@ import project.qasystem.persistence.model.Question;
 public class QuestionService {
 
     @Autowired
-    private DataBaseService dataBaseService;
+    private DataBaseService dataBaseService = new DataBaseService();
 
 
     public Question getQuestionById(int id) {
-        return dataBaseService.getQuestionById(id);
+        long idLong = Long.valueOf(id);
+        return dataBaseService.getQuestionById(idLong);
     }
 
 

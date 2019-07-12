@@ -93,48 +93,54 @@
                 </form>
             </div>
 
-
-            <table id="planTable" class="table table-bordered table-condensed"
-                   data-toggle="table">
-                <thead>
-                <tr>
-                    <th data-field="date" data-sortable="true">
-                        Datum
-                    </th>
-                    <th data-field="username" data-sortable="true">
-                        Author
-                    </th>
-                    <th data-field="title" data-sortable="true">
-                        Title
-                    </th>
-                    <th data-field="description" data-sortable="true">
-                        Beschreibung
-                    </th>
-                    <th data-field="isAnswered" data-sortable="true">
-                        Beantwortet
-                    </th>
-                    <th data-field="isSolved" data-sortable="true">
-                        Gelöst
-                    </th>
-                </tr>
-                </thead>
-                <tbody id="myTable">
-                <!--- th:onclick="'javascript:rowClicked(\'' + ${questionList.getId()} + '\');'"-->
-                <tr th:each="questionList : ${listOfQuestions}">
-                    <td th:text="${questionList.getDate()  }"></td>
-                    <td th:text="${questionList.getUserName()}"></td>
-                    <td><a th:text="${questionList.getTitle()}" href="/answerquestion"></a></td>
-                    <td th:text="${questionList.getDescription()}"></td>
-                    <td th:text="${questionList.isAnswered()}"></td>
-                    <td th:text="${questionList.isSolved()}"></td>
-                </tr>
-                </tbody>
-            </table>
+            <form th:action="@{/getQuestion}" method="post">
+                <table id="planTable" class="table table-bordered table-condensed"
+                       data-toggle="table" >
+                    <thead>
+                    <tr>
+                        <th data-field="date" data-sortable="true">
+                            Datum
+                        </th>
+                        <th data-field="username" data-sortable="true">
+                            Author
+                        </th>
+                        <th data-field="title" data-sortable="true">
+                            Title
+                        </th>
+                        <th data-field="description" data-sortable="true">
+                            Beschreibung
+                        </th>
+                        <th data-field="isAnswered" data-sortable="true">
+                            Beantwortet
+                        </th>
+                        <th data-field="isSolved" data-sortable="true">
+                            Gelöst
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody id="myTable">
+                    <!--- th:onclick="'javascript:rowClicked(\'' + ${questionList.getIdQuestion()} + '\');'"-->
+                    <tr th:each="questionList : ${listOfQuestions}"
+                        >
+                        <td th:text="${questionList.getDate()  }"></td>
+                        <td th:text="${questionList.getUserName()}"></td>
+                        <td><a th:text="${questionList.getTitle()}" href="/answerquestion"></a></td>
+                        <td th:text="${questionList.getDescription()}"></td>
+                        <td th:text="${questionList.isAnswered()}"></td>
+                        <td th:text="${questionList.isSolved()}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
         </div>
     </div>
 </main>
 <!-- /.container -->
-
+<script>
+    function rowClicked(value) {
+        location.href = ".../getQuestion/" + value;
+    }
+</script>
 <!--<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>-->
 </body>
 </html>
