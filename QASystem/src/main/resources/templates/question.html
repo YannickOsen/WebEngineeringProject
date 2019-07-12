@@ -37,12 +37,18 @@
     </style>
     <script>
     function validateForm() {
-    var ans = document.forms["answerForm"]["answer"].value;
 
-    if (ans == "") {
-    alert("Gib bitte eine Antwort ein.");
-    return false;
+        var ans = document.forms["answerForm"]["answer"].value;
+
+        if (ans == "") {
+            alert("Gib bitte eine Antwort ein.");
+            return false;
+        }
     }
+
+    function emptyForm() {
+        var form = document.getElementById("answerForm");
+        form.reset();
     }
     </script>
 </head>
@@ -103,11 +109,11 @@
         </h2>
 
         <!-- if a user is logged if, he/she/it can create an answer -->
-        <form th:action="@{/answerquestion}" th:object="${answer}" name="answerForm" onsubmit="return validateForm()" method="post">
+        <form th:action="@{/answerquestion}" th:object="${answer}" id="answerForm" name="answerForm" onsubmit="return validateForm()" method="post">
             <p>Deine Antwort:</p></p><br>
             <input th:field="*{text}" id="text" type="text" name="answer" class="col-sm-6 col-md-4" style="height: 100px;" placeholder="Antwort...">
             <br><br>
-            <input type="submit" value="Antworten">
+            <input type="submit" onclick="emptyForm()" value="Antworten">
         </form>
 
     </div>
