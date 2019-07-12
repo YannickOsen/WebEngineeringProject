@@ -57,7 +57,7 @@ public class QuestionController {
         int idInt;
         try {
             idInt = Integer.parseInt(id);
-        } catch (NumberFormatException excception) {
+        } catch (NumberFormatException exception) {
             return "welcome";
         }
         Question toGet = service.getQuestionById(idInt);
