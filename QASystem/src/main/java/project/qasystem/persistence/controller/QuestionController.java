@@ -75,6 +75,12 @@ public class QuestionController {
         return "question";
     }
 
+    @PostMapping("/answerquestion")
+    public String answerQuestion(@ModelAttribute("answer") AnswerDTO answerDTO) {
+        questionService.insertAnswer(answerDTO.getAuthorName(), answerDTO.getIdQuestion(), answerDTO.getText());
+        return "question";
+    }
+
     @GetMapping("/questionlist")
     public String getQuestions(Model model) {
         List<QuestionDto> toReturn = questionService.getAllQuestions();
