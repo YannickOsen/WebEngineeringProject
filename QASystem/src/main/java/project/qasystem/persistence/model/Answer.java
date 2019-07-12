@@ -11,6 +11,7 @@ public class Answer {
 
     @Id
     @Column
+    @GeneratedValue
     private long id;
 
     @Column
