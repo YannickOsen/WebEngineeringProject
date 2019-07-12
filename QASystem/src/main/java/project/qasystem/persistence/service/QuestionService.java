@@ -25,6 +25,10 @@ public class QuestionService {
         dataBaseService.insertQuestion(title, description, userName);
     }
 
+    public void insertAnswer(String username, int idQuestion, String text) {
+        dataBaseService.insertAnswer(username, idQuestion, text);
+    }
+
     /**
      * gets a List of all existing Questions in the Database.
      *
