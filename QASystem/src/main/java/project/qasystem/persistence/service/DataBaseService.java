@@ -3,6 +3,10 @@ package project.qasystem.persistence.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import project.qasystem.persistence.model.User;
 import org.springframework.stereotype.Service;
@@ -16,6 +20,7 @@ import project.qasystem.persistence.repositories.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Singleton Data Access Object which handles all queries with the Database.
@@ -28,6 +33,8 @@ public class DataBaseService {
 
     @Autowired
     private QuestionRepository questionRepository;
+
+    //TODO questionRepo is null when adressed from questionController.getQuestion()
 
     @Autowired
     private AnswerRepository answerRepository;
@@ -112,6 +119,7 @@ public class DataBaseService {
             questionDto.setUserName("user"); // Todo get username from question
 //            questionDto.setUserName(question.getUser().getUsername());
             questionDto.setDate(question.getDate());
+            questionDto.setIdQuestion(Math.toIntExact(question.getId()));
             questionDtos.add(questionDto);
         }
         return questionDtos;

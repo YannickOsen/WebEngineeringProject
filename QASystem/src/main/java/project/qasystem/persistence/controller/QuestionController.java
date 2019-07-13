@@ -50,37 +50,50 @@ public class QuestionController {
      * @return Question at success to display the found Question;
      * error when Question not found or id invalid.
      */
+/*
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     //TODO adapt to new project
     public String getQuestion(@PathVariable("id") String id, Model model) {
-        QuestionService service = new QuestionService();
         int idInt;
         try {
             idInt = Integer.parseInt(id);
-        } catch (NumberFormatException excception) {
-            model.addAttribute("error", "Das war keine gültige ID!");
-            return "error";
+        } catch (NumberFormatException exception) {
+            return "welcome";
         }
-        Question toGet = service.getQuestionById(idInt);
+        Question toGet = questionService.getQuestionById(idInt);
+        int testvalue = 0;
         if (toGet == null) {
-            model.addAttribute("error", "Übung nicht gefunden!");
-            return "error";
+            return "welcome";
         } else {
-            model.addAttribute("Question", toGet);
-            return "Question";
+            model.addAttribute("thisQuestion", toGet);
+            return "question";
+        }
+    }
+*/
+
+    @GetMapping("/answerquestion/{id}")
+    public String showAnswerForm(@PathVariable("id") String id, Model model) {
+        model.addAttribute("answer", new AnswerDTO());
+        int idInt;
+        try {
+            idInt = Integer.parseInt(id);
+        } catch (NumberFormatException exception) {
+            return "welcome";
+        }
+        Question toGet = questionService.getQuestionById(idInt);
+        int testvalue = 0;
+        if (toGet == null) {
+            return "welcome";
+        } else {
+            model.addAttribute("thisQuestion", toGet);
+            return "question";
         }
     }
 
-    @GetMapping("/answerquestion")
-    public String showAnswerForm(Model model) {
-        model.addAttribute("answer", new AnswerDTO());
-        return "question";
-    }
-
-    @PostMapping("/answerquestion")
+    @PostMapping("/answerquestion/{id}")
     public String answerQuestion(@ModelAttribute("answer") AnswerDTO answerDTO) {
         questionService.insertAnswer(answerDTO.getAuthorName(), answerDTO.getIdQuestion(), answerDTO.getText());
-        return "redirect:/answerquestion";
+        return "redirect:/answerquestion/{id}";
     }
 
     @GetMapping("/questionlist")

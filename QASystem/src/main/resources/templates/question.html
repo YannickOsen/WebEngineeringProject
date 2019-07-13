@@ -36,15 +36,14 @@
         }
     </style>
     <script>
-    function validateForm() {
+        function validateForm() {
+            var ans = document.forms["answerForm"]["answer"].value;
 
-        var ans = document.forms["answerForm"]["answer"].value;
-
-        if (ans == "") {
-            alert("Gib bitte eine Antwort ein.");
-            return false;
+            if (ans == "") {
+                alert("Gib bitte eine Antwort ein.");
+                return false;
+            }
         }
-    }
     </script>
 </head>
 
@@ -82,7 +81,7 @@
 <div class="container-fluid padding" >
     <div class="row text-center">
         <div class="col-lg-12">
-            <h2>Beispiel Frage</h2>
+            <h1>Beispiel Frage</h1>
         </div>
 
     </div>
@@ -91,13 +90,20 @@
 <main role="main" class="container">
     <div class="starter-template">
 
-        <!-- question header -->
-        <h1>Lorem ipsum ?</h1>
+        <!--- TODO make pretty--->
+        <h2 th:text="${thisQuestion.getTitle()}">Lorem ipsum ?</h2>
 
-        <!-- question description -->
-        <p>corden est...</p>
+        <p th:text="${thisQuestion.getText()}">corden est...</p>
         <br><br>
 
+        <p th:text="${thisQuestion.getDate()}">corden est...</p>
+        <br><br>
+
+        <p th:text="${thisQuestion.getUser()}">corden est...</p>
+        <br><br>
+
+
+        <!---- TODO fetch Answers--->
         <!-- List all answers -->
         <h2>
             <p> Sing.</p>
