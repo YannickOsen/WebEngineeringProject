@@ -88,12 +88,12 @@
     <div class="container-fluid padding" >
         <div class="row text-center">
             <div class="col-lg-12">
-    <form th:action="@{/login}" name="signinForm" onsubmit="return validateForm()" method="post">
+    <form th:action="@{/login}" name="signinForm" onsubmit="return validateForm()" method="post" >
         Name:<br>
-        <input type="text" name="username" placeholder="Nickname">
+        <input type="text" name="username" placeholder="Nickname" >
         <br>
         Passwort:<br>
-        <input type="password" name="password" placeholder="Passwort">
+        <input type="password" name="password" placeholder="Passwort" >
         <br><br>
         <input type="submit" value="Submit">
     </form>
