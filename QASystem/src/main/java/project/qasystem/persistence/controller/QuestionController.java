@@ -53,14 +53,13 @@ public class QuestionController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     //TODO adapt to new project
     public String getQuestion(@PathVariable("id") String id, Model model) {
-        QuestionService service = new QuestionService();
         int idInt;
         try {
             idInt = Integer.parseInt(id);
         } catch (NumberFormatException exception) {
             return "welcome";
         }
-        Question toGet = service.getQuestionById(idInt);
+        Question toGet = questionService.getQuestionById(idInt);
         int testvalue = 0;
         if (toGet == null) {
             return "welcome";

@@ -33,6 +33,7 @@ public class DataBaseService {
 
     @Autowired
     private QuestionRepository questionRepository;
+
     //TODO questionRepo is null when adressed from questionController.getQuestion()
 
     @Autowired
@@ -118,6 +119,7 @@ public class DataBaseService {
             questionDto.setUserName("user"); // Todo get username from question
 //            questionDto.setUserName(question.getUser().getUsername());
             questionDto.setDate(question.getDate());
+            questionDto.setIdQuestion(Math.toIntExact(question.getId()));
             questionDtos.add(questionDto);
         }
         return questionDtos;

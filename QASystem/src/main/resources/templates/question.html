@@ -90,7 +90,7 @@
 <main role="main" class="container">
     <div class="starter-template">
 
-        <!--- TODO make pretty
+        <!--- TODO make pretty--->
         <h2 th:text="${thisQuestion.getTitle()}">Lorem ipsum ?</h2>
 
         <p th:text="${thisQuestion.getText()}">corden est...</p>
@@ -101,20 +101,21 @@
 
         <p th:text="${thisQuestion.getUser()}">corden est...</p>
         <br><br>
-        --->
+
+
         <!---- TODO fetch Answers--->
         <!-- List all answers -->
         <h2>
             <p> Sing.</p>
         </h2>
 
-        <!-- if a user is logged if, he/she/it can create an answer -->
+        <!-- if a user is logged if, he/she/it can create an answer
         <form th:action="@{/answerquestion}" th:object="${answer}" name="answerForm" onsubmit="return validateForm()" method="post">
             <p>Deine Antwort:</p></p><br>
             <input th:field="*{text}" id="text" type="text" name="answer" class="col-sm-6 col-md-4" style="height: 100px;" placeholder="Antwort...">
             <br><br>
             <input type="submit" value="Antworten">
-        </form>
+        </form>-->
 
     </div>
 </main>
