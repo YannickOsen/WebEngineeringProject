@@ -34,6 +34,20 @@
         .padding {
             padding-bottom: 2rem;
         }
+        #planTable {
+            background-color: #fff;
+        }
+        #planTable a {
+            color: #81d4fa
+        }
+        #planTable a:hover {
+            color: #81d4fa
+            text-decoration: underline;
+        }
+        #planTable td {
+            max-width: 120px;
+            word-break: break-all;
+        }
     </style>
 </head>
 
@@ -91,7 +105,7 @@
                 <input type="checkbox" checked style="margin: 5px;" name="notanswered">Unbeantwortete Fragen</input>
                     <input type="checkbox" checked style="margin: 5px;" name="myquestions">Meine Fragen</input>
                 </form>
-            </div>
+
 
             <form th:action="@{/getQuestion}" method="post">
                 <table id="planTable" class="table table-bordered table-condensed"
@@ -116,9 +130,6 @@
                         <th data-field="isSolved" data-sortable="true">
                             Gelöst
                         </th>
-                        <th data-field="isSolved" data-sortable="true">
-                            ID test
-                        </th>
                     </tr>
                     </thead>
                     <tbody id="myTable">
@@ -131,11 +142,11 @@
                         <td th:text="${questionList.getDescription()}"></td>
                         <td th:text="${questionList.isAnswered()}"></td>
                         <td th:text="${questionList.isSolved()}"></td>
-                        <td th:text="${questionList.getIdQuestion()}"></td>
                     </tr>
                     </tbody>
                 </table>
             </form>
+            </div>
         </div>
     </div>
 </main>
