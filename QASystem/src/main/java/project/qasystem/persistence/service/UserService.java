@@ -14,6 +14,7 @@ public class UserService {
     @Autowired
     private DataBaseService dataBaseService;
 
+    private String currentUser = "default";
     /**
      * returns a user with the given userName, null if not found.
      *
@@ -67,5 +68,10 @@ public class UserService {
      */
     public List<User> getAllUsers() {
         return dataBaseService.getAllUsers();
+    }
+
+    public String getCurrentUser() {return currentUser;}
+    public void setCurrentUser(String currentUser) {
+        this.currentUser = currentUser;
     }
 }

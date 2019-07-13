@@ -34,6 +34,16 @@
         .padding {
             padding-bottom: 2rem;
         }
+        .question-area {
+            background: #fff;
+        }
+        .question-header {
+            padding: 5px;
+        }
+        .question-header p{
+            margin-right: 5px;
+            float: left;
+        }
     </style>
     <script>
         function validateForm() {
@@ -88,18 +98,22 @@
 </div>
 
 <main role="main" class="container">
-    <div class="starter-template">
+    <div class="question-area text-center col-lg-12">
 
         <!--- TODO make pretty--->
-        <h2 th:text="${thisQuestion.getTitle()}">Lorem ipsum ?</h2>
+        <div class="question-header">
+        <p th:text="${thisQuestion.getUser().getUsername()}">HansHansHand</p>
+        <p>fragte am</p>
+        <p th:text="${thisQuestion.getDate()}">10.09.1000</p>
+        </div><br><br>
+        <h2 th:text="${thisQuestion.getTitle()}">Random Question 1 with even more letters</h2>
 
-        <p th:text="${thisQuestion.getText()}">corden est...</p>
+        <p th:text="${thisQuestion.getText()}">Random Question description. Random Question description. Random Question description. Random Question description. Random Question description. </p>
+
+
         <br><br>
 
-        <p th:text="${thisQuestion.getDate()}">corden est...</p>
-        <br><br>
 
-        <p th:text="${thisQuestion.getUser()}">corden est...</p>
         <br><br>
 
 
@@ -121,6 +135,5 @@
 </main>
 <!-- /.container -->
 
-<!--<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>-->
 </body>
 </html>

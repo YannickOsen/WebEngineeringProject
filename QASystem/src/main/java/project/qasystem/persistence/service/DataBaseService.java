@@ -39,13 +39,12 @@ public class DataBaseService {
     @Autowired
     private AnswerRepository answerRepository;
 
-   @Autowired
+    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
    
     public Question getQuestionById(long id){
         return questionRepository.findById(id);
     }
-
 
     public Answer getAnswerById(long id){
         return answerRepository.findById(id);
@@ -105,8 +104,10 @@ public class DataBaseService {
                              break;
             case "notanswered": questions = questionRepository.findByIsAnswered(false);
                                 break;
-            case "myqeustions": questions = questionRepository.findByUser(null); // Todo search by current user
-                                  break;
+            case "myquestions":
+                               User user = userRepository.findByUsername(input);
+                               questions = questionRepository.findByUser(user);
+                                  ;
         }
 
         QuestionDto questionDto;
@@ -116,8 +117,7 @@ public class DataBaseService {
             questionDto.setDescription(question.getText());
             questionDto.setAnswered(question.getIsAnswered());
             questionDto.setSolved(question.getIsSolved());
-            questionDto.setUserName("user"); // Todo get username from question
-//            questionDto.setUserName(question.getUser().getUsername());
+            questionDto.setUserName(question.getUser().getUsername());
             questionDto.setDate(question.getDate());
             questionDto.setIdQuestion(Math.toIntExact(question.getId()));
             questionDtos.add(questionDto);
