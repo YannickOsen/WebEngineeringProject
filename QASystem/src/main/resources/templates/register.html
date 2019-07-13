@@ -84,10 +84,10 @@
             <div class="col-lg-12">
     <form th:action="@{/registration}" th:object="${registration}" name="registerForm" method="post" id="postForm">
         Name:<br>
-        <input th:field="*{userName}" id="username" type="text" name="name" placeholder="Nickname" onkeypress="return noenter()">
+        <input th:field="*{userName}" id="username" type="text" name="name" placeholder="Nickname" onkeypress="return noenter()"  maxlength="50">
         <br>
         Passwort:<br>
-        <input th:field="*{password}" id="password" type="password" name="password" placeholder="Passwort" onkeypress="return noenter()">
+        <input th:field="*{password}" id="password" type="password" name="password" placeholder="Passwort" onkeypress="return noenter()"  maxlength="50">
         <br>
         Passwort erneut eingeben:<br>
         <input th:field="*{confirmPassword}" id="confirmPassword" type="password" name="confirmPassword" placeholder="Passwort bestätigen" onkeypress="return noenter()">
