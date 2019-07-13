@@ -81,7 +81,6 @@ public class QuestionController {
             return "welcome";
         }
         Question toGet = questionService.getQuestionById(idInt);
-        int testvalue = 0;
         if (toGet == null) {
             return "welcome";
         } else {

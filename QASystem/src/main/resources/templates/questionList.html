@@ -93,7 +93,7 @@
                 </form>
             </div>
 
-            <form th:action="@{/getQuestion}" method="post">
+            <form th:action="@{/getQuestion}" >
                 <table id="planTable" class="table table-bordered table-condensed"
                        data-toggle="table" >
                     <thead>
@@ -123,11 +123,11 @@
                     </thead>
                     <tbody id="myTable">
                     <!--- -->
-                    <tr th:each="questionList : ${listOfQuestions}"
-                        th:onclick="'javascript:rowClicked(\'' + ${questionList.getIdQuestion()} + '\');'">
+                    <tr th:each="questionList : ${listOfQuestions}">
                         <td th:text="${questionList.getDate()  }"></td>
                         <td th:text="${questionList.getUserName()}"></td>
-                        <td><a th:text="${questionList.getTitle()}" th:href="@{/answerquestion/{id}(id=${questionList.getIdQuestion()})}"></a></td>
+                        <td><a th:text="${questionList.getTitle()}"
+                               th:href="@{/answerquestion/{id}(id=${questionList.getIdQuestion()})}"></a></td>
                         <td th:text="${questionList.getDescription()}"></td>
                         <td th:text="${questionList.isAnswered()}"></td>
                         <td th:text="${questionList.isSolved()}"></td>
