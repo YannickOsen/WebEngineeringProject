@@ -13,6 +13,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <script type="text/javascript">
+        function noenter() {
+            return !(window.event && window.event.keyCode == 13); }
+    </script>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 
@@ -80,13 +84,13 @@
             <div class="col-lg-12">
     <form th:action="@{/registration}" th:object="${registration}" name="registerForm" method="post" id="postForm">
         Name:<br>
-        <input th:field="*{userName}" id="username" type="text" name="name" placeholder="Nickname">
+        <input th:field="*{userName}" id="username" type="text" name="name" placeholder="Nickname" onkeypress="return noenter()">
         <br>
         Passwort:<br>
-        <input th:field="*{password}" id="password" type="password" name="password" placeholder="Passwort">
+        <input th:field="*{password}" id="password" type="password" name="password" placeholder="Passwort" onkeypress="return noenter()">
         <br>
         Passwort erneut eingeben:<br>
-        <input th:field="*{confirmPassword}" id="confirmPassword" type="password" name="confirmPassword" placeholder="Passwort bestätigen">
+        <input th:field="*{confirmPassword}" id="confirmPassword" type="password" name="confirmPassword" placeholder="Passwort bestätigen" onkeypress="return noenter()">
         <br><br>
         <div hidden>
             <input type="submit" value="Submit" id="submitButton">
