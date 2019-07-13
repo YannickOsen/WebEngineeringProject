@@ -2,8 +2,8 @@ package project.qasystem.persistence.DTOs;
 
 public class AnswerDTO {
     private String authorName;
-    private int idQuestion;
-    private int idAnswer;
+    private long idQuestion;
+    private long idAnswer;
     private boolean isAcceptedAnswer;
     private String text;
 
@@ -26,15 +26,15 @@ public class AnswerDTO {
         this.authorName = authorName;
     }
 
-    public int getIdQuestion() {
+    public long getIdQuestion() {
         return idQuestion;
     }
 
-    public void setIdQuestion(int idQuestion) {
+    public void setIdQuestion(long idQuestion) {
         this.idQuestion = idQuestion;
     }
 
-    public int getIdAnswer() {
+    public long getIdAnswer() {
         return idAnswer;
     }
 

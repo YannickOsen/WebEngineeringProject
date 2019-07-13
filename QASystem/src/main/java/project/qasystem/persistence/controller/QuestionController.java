@@ -92,7 +92,12 @@ public class QuestionController {
     }
 
     @PostMapping("/answerquestion/{id}")
-    public String answerQuestion(@ModelAttribute("answer") AnswerDTO answerDTO) {
+    public String answerQuestion(
+            @PathVariable("id") String id,
+            @ModelAttribute("answer") AnswerDTO answerDTO,
+            Principal principal) {
+        answerDTO.setAuthorName(principal.getName());
+        answerDTO.setIdQuestion(Long.parseLong(id));
         questionService.insertAnswer(answerDTO.getAuthorName(), answerDTO.getIdQuestion(), answerDTO.getText());
         return "redirect:/answerquestion/{id}";
     }

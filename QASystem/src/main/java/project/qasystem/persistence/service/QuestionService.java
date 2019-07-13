@@ -26,7 +26,7 @@ public class QuestionService {
         dataBaseService.insertQuestion(title, description, userName);
     }
 
-    public void insertAnswer(String username, int idQuestion, String text) {
+    public void insertAnswer(String username, long idQuestion, String text) {
         dataBaseService.insertAnswer(username, idQuestion, text);
     }
 

@@ -34,8 +34,6 @@ public class DataBaseService {
     @Autowired
     private QuestionRepository questionRepository;
 
-    //TODO questionRepo is null when adressed from questionController.getQuestion()
-
     @Autowired
     private AnswerRepository answerRepository;
 
@@ -50,11 +48,6 @@ public class DataBaseService {
         return answerRepository.findById(id);
     }
 
-    public void createTables(){
-        /*TODO change to return Table type
-            * Grab Table of Questions
-         */
-    }
 
     public void insertUser(String userName, String passWord){
         User user = new User();
@@ -67,17 +60,13 @@ public class DataBaseService {
         return userRepository.findByUsername(username);
     }
 
-    public void setAdvancedUserData(/*Content*/){
-        //TODO Questions/Answers of this user
-    }
-
     public void insertQuestion(String title, String text, String userName){
         User user = userRepository.findByUsername(userName);
         Question question = new Question(title, text, user);
         questionRepository.save(question);
     }
 
-    public void insertAnswer(String username, int idQuestion, String text){
+    public void insertAnswer(String username, long idQuestion, String text){
         Question question = questionRepository.findById(idQuestion);
         User user = userRepository.findByUsername(username);
         Answer answer = new Answer(question, text, user);
