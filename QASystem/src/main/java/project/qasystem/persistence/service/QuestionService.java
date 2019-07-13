@@ -59,8 +59,8 @@ public class QuestionService {
         return dataBaseService.getAllQuestions("notanswered", "");
     }
 
-    public List<QuestionDto> getuserQuestions() {
-        return dataBaseService.getAllQuestions("myquestions", "");
+    public List<QuestionDto> getuserQuestions(String username) {
+        return dataBaseService.getAllQuestions("myquestions", "username");
     }
 
     /**

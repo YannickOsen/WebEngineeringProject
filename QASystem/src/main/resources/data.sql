@@ -1,13 +1,13 @@
 INSERT INTO Users(
-VALUES (10000,'Joseph','password')
+VALUES (10000,'password','jonathan')
 );
 
 INSERT INTO Users(
-VALUES(9999,'Jonathan','password')
+VALUES(9999,'password','joseph')
 );
 
 INSERT INTO Users(
-VALUES(10001,'yareyare','password')
+VALUES(10001,'password','yareyare')
 );
 
 /*INSERT INTO Questions(

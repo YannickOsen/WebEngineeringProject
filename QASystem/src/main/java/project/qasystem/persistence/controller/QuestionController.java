@@ -9,6 +9,7 @@ import project.qasystem.persistence.DTOs.QuestionDto;
 import project.qasystem.persistence.service.*;
 import project.qasystem.persistence.model.Question;
 
+import java.security.Principal;
 import java.util.List;
 
 
@@ -36,7 +37,8 @@ public class QuestionController {
     }
 
     @PostMapping("/newquestion")
-    public String newQuestion(@ModelAttribute("newQuestion") QuestionDto questionDto) {
+    public String newQuestion(@ModelAttribute("newQuestion") QuestionDto questionDto, Principal principal) {
+        questionDto.setUserName(principal.getName());
         questionService.insertQuestion(questionDto.getTitle(), questionDto.getDescription(), questionDto.getUserName());
         return "redirect:/questionlist";
     }
@@ -104,12 +106,15 @@ public class QuestionController {
     }
 
     @GetMapping("/searchquestion")
-    public String getQuestionsByCheckbox(@RequestParam("search") String value,
+    public String getQuestionsByCheckbox(
+                                         @RequestParam("search") String value,
                                          @RequestParam(value = "solved", required = false) String solved,
                                          @RequestParam(value = "notsolved", required = false) String notsolved,
                                          @RequestParam(value = "answered", required = false) String answered,
                                          @RequestParam(value = "notanswered", required = false) String notanswered,
-                                         @RequestParam(value = "myquestions", required = false) String myquestions, Model model) {
+                                         @RequestParam(value = "myquestions", required = false) String myquestions,
+                                         Model model, Principal principal
+    ) {
         List<QuestionDto> toReturn = null;
         if (value == "") {
             if (solved != null && notsolved != null && answered != null && notanswered != null && myquestions != null) {
@@ -128,7 +133,7 @@ public class QuestionController {
                 toReturn = questionService.getnotansweredQuestions();
             }
             if (solved != null && notsolved == null && answered != null && notanswered == null && myquestions != null) {
-                toReturn = null;
+                toReturn = questionService.getuserQuestions(principal.getName());
             }
         } else {
             toReturn = questionService.getQuestionsByTitle(value);
