@@ -22,6 +22,10 @@ public class QuestionService {
         return dataBaseService.getQuestionById(idLong);
     }
 
+    public Answer getAnswerById(int id){
+        long idLong = Long.valueOf(id);
+        return dataBaseService.getAnswerById(idLong);
+    }
 
     public List<AnswerDTO> getAnswerByQuestion(Question question){
         return dataBaseService.getAnswerByQuestion(question);
@@ -34,6 +38,10 @@ public class QuestionService {
 
     public void insertAnswer(String username, long idQuestion, String text) {
         dataBaseService.insertAnswer(username, idQuestion, text);
+    }
+
+    public void questionSolved(int answerID){
+        dataBaseService.questionSolved(answerID);
     }
 
     /**
