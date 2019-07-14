@@ -85,6 +85,14 @@ public class DataBaseService {
         return userRepository.findAll();
     }
 
+    public void saveBookmarkedQuestion(String id, String username) {
+        int qeustionID = Integer.parseInt(id);
+        Question question = questionRepository.findById(qeustionID);
+        User currentuser = userRepository.findByUsername(username);
+        List<Bookmark> bookmarkedQuestions = bookmarkRepository.findByUser(currentuser);
+        bookmarkRepository.save(new Bookmark(question, currentuser));
+    }
+
 
     public List<QuestionDto> getBookmarkedQuestions(String userName){
         User currentUser = userRepository.findByUsername(userName);

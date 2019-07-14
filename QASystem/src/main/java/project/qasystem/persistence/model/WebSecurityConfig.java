@@ -36,9 +36,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // enable this and .csrf to access H2-Database from webbrowser with /console/
-//         http.headers().frameOptions().disable();
+         http.headers().frameOptions().disable();
         http
-//                .csrf().disable()
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers( "/").permitAll()
                 .antMatchers("/login").permitAll()

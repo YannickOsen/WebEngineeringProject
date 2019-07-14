@@ -97,4 +97,8 @@ public class QuestionService {
         return dataBaseService.getBookmarkedQuestions(userName);
     }
 
+    public void saveBookmarkedQuestion(String id, String username) {
+        dataBaseService.saveBookmarkedQuestion(id, username);
+    }
+
 }

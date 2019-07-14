@@ -96,6 +96,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
         <p th:text="${thisQuestion.getDate()}">10.09.1000</p>
         </div>
         <br><br>
+        <form th:action="@{/answerquestion/{id}/setbookmark(id=${thisQuestion.getId()})}" method="post" >
+            <input type="submit" value="Mit Lesezeichen versehen">
+        </form>
         <h1 th:text="${thisQuestion.getTitle()}">Random Question</h1>
         <p th:text="${thisQuestion.getText()}">Random description</p>
 
@@ -132,7 +135,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
             <br><br>
             <input type="submit" value="Antworten">
         </form>
-
     </div>
 </main>
 <!-- /.container -->

@@ -78,6 +78,12 @@ public class QuestionController {
         return "redirect:/answerquestion/{id}";
     }
 
+    @PostMapping("/answerquestion/{id}/setbookmark")
+    public String moveToBookmarks(@PathVariable("id") String id, Principal principal) {
+        questionService.saveBookmarkedQuestion(id, principal.getName());
+        return "redirect:/answerquestion/{id}";
+    }
+
 
     @GetMapping("/questionSolved/{id}/{idAnswer}")
     public String markAsSolved(@PathVariable("id") String idQuestion, @PathVariable("idAnswer") String idAnswer) {
