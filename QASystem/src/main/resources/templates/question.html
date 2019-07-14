@@ -36,6 +36,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
             padding-bottom: 2rem;
         }
         .question-area {
+            margin-top: 10px;
+            padding-top: 5px;
             background: #fff;
         }
         .question-header {
@@ -62,6 +64,12 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
         }
         .accept-solution {
             float: right;
+        }
+        #all-answers-header {
+            text-decoration: underline;
+        }
+        #accepted-solution {
+            color: darkgreen;
         }
     </style>
     <script>
@@ -104,23 +112,23 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <main role="main" class="container">
     <div class="question-area text-center col-lg-12">
-
+        <form th:action="@{/answerquestion/{id}/setbookmark(id=${thisQuestion.getId()})}" method="post" >
+            <input type="submit" value="Mit Lesezeichen versehen">
+        </form>
         <div class="question-header">
         <p th:text="${thisQuestion.getUser().getUsername()}">bsp</p>
         <p>fragte am</p>
         <p th:text="${thisQuestion.getDate()}">10.09.1000</p>
         </div>
         <br><br>
-        <form th:action="@{/answerquestion/{id}/setbookmark(id=${thisQuestion.getId()})}" method="post" >
-            <input type="submit" value="Mit Lesezeichen versehen">
-        </form>
-        <h1 th:text="${thisQuestion.getTitle()}">Random Question</h1>
+
+        <h3 th:text="${thisQuestion.getTitle()}">Random Question</h3>
         <p th:text="${thisQuestion.getText()}">Random description</p>
 
         <br>
 
         <!-- List all answers -->
-        <h6>Bisherige Antworten:</h6>
+        <h6 id="all-answers-header">Bisherige Antworten:</h6>
         <div th:each="answer : ${thisAnswerInList}" class="answers">
             <div class="answer-header">
                 <p th:text="${answer.getAuthorName()}"> author.</p>
@@ -128,17 +136,16 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                 <p th:text="${answer.getDate()}"> datum.</p>
             </div>
             <br><br>
-            <h4 th:text="${answer.getText()}"> text.</h4>
+            <h5 th:text="${answer.getText()}"> text.</h5>
             <div th:each="question : ${listOfQuestions}" class="accept-solution">
                 <div th:if="${question.getIdQuestion() == thisQuestion.getId()}">
                     <form  th:action="@{/questionSolved/{id}/{idAnswer}(idAnswer=${answer.getIdAnswer()}, id=${thisQuestion.getId()})}">
                         <input type="submit" value="Als Lösung akzeptieren">
                     </form>
                 </div>
-                <!--- TODO make pretty-->
             </div>
-            <div th:if="${answer.isAcceptedAnswer() == true}">
-                <h4>Accepted Solution</h4>
+            <div th:if="${answer.isAcceptedAnswer() == true}" class="text-centers">
+                <h5 id="accepted-solution">Akzeptierte Lösung ✔</h5>
             </div>
         </div>
 
