@@ -30,7 +30,11 @@ public class UserController {
     }
 
     @GetMapping("/registration")
-    public String showRegistrationForm(Model model) {
+    public String showRegistrationForm(Model model, Principal principal) {
+        if (principal != null){
+            Boolean isLoggedIn = true;
+            model.addAttribute("isLoggedIn", isLoggedIn);
+        }
         model.addAttribute("registration", registrationDto());
         return "register";
     }
@@ -42,39 +46,64 @@ public class UserController {
      * @return "user_startup_page" to navigate to the page.
      */
     @RequestMapping("/home")
-    public String startUp() { return "welcome"; }
+    public String startUp(Principal principal, Model model) {
+        if (principal != null){
+            Boolean isLoggedIn = true;
+            model.addAttribute("isLoggedIn", isLoggedIn);
+        }
+        return "welcome"; }
 
     @RequestMapping("/")
-    public String welcome() { return "welcome"; }
+    public String welcome(Principal principal, Model model) {
+        if (principal != null){
+            Boolean isLoggedIn = true;
+            model.addAttribute("isLoggedIn", isLoggedIn);
+        }
+        return "welcome"; }
 
     @RequestMapping("/login")
-    public String login() {
+    public String login(Principal principal, Model model) {
+        if (principal != null){
+            Boolean isLoggedIn = true;
+            model.addAttribute("isLoggedIn", isLoggedIn);
+        }
         return "signin";
     }
 
     @RequestMapping("/login_successful")
-    public String loginSuccess() {
+    public String loginSuccess(Principal principal, Model model) {
+        if (principal != null){
+            Boolean isLoggedIn = true;
+            model.addAttribute("isLoggedIn", isLoggedIn);
+        }
         return "welcome";
     }
 
     @RequestMapping("/registration_successful")
-    public String registrationSuccess() {
+    public String registrationSuccess(Principal principal, Model model) {
+        if (principal != null){
+            Boolean isLoggedIn = true;
+            model.addAttribute("isLoggedIn", isLoggedIn);
+        }
         return "welcome";
     }
 
     @RequestMapping("/logout_successful")
-    public String logoutSuccess() {
+    public String logoutSuccess(Principal principal, Model model) {
+        if (principal != null){
+            Boolean isLoggedIn = true;
+            model.addAttribute("isLoggedIn", isLoggedIn);
+        }
         return "signin";
     }
 
     @RequestMapping("/questionlist")
-    public String questionList() {
+    public String questionList(Principal principal, Model model) {
+        if (principal != null){
+            Boolean isLoggedIn = true;
+            model.addAttribute("isLoggedIn", isLoggedIn);
+        }
         return "questionList";
-    }
-
-    @RequestMapping("/bookmarklist")
-    public String bookmarkList() {
-        return "bookmarkList";
     }
 
     @RequestMapping("/question")
