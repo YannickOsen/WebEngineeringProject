@@ -106,14 +106,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
         </div>
     </div>
 </nav>
-<div class="container-fluid padding" >
-    <div class="row text-center">
-        <div class="col-lg-12">
-            <h1>Beispiel Frage</h1>
-        </div>
-
-    </div>
-</div>
 
 <main role="main" class="container">
     <div class="question-area text-center col-lg-12">
@@ -124,7 +116,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
         <p th:text="${thisQuestion.getDate()}">10.09.1000</p>
         </div>
         <br><br>
-        <h3 th:text="${thisQuestion.getTitle()}">Random Question</h3>
+        <h1 th:text="${thisQuestion.getTitle()}">Random Question</h1>
         <p th:text="${thisQuestion.getText()}">Random description</p>
 
         <br>
@@ -141,7 +133,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
             <h4 th:text="${answer.getText()}"> text.</h4>
             <div th:each="question : ${listOfQuestions}" class="accept-solution">
                 <div th:if="${question.getIdQuestion() == thisQuestion.getId()}">
-                    <input type="button" value="Als Lösung akzeptieren">
+                    <form  th:action="@{/questionSolved/{id}/{idAnswer}(idAnswer=${answer.getIdAnswer()}, id=${thisQuestion.getId()})}">
+                        <input type="submit" value="Als Lösung akzeptieren">
+                    </form>
                 </div>
             </div>
         </div>
@@ -158,6 +152,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     </div>
 </main>
 <!-- /.container -->
+
+
 
 </body>
 </html>

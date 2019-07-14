@@ -10,6 +10,7 @@ import project.qasystem.persistence.model.Answer;
 import project.qasystem.persistence.service.*;
 import project.qasystem.persistence.model.Question;
 
+import javax.validation.constraints.Null;
 import java.security.Principal;
 import java.util.List;
 
@@ -106,6 +107,21 @@ public class QuestionController {
         return "redirect:/answerquestion/{id}";
     }
 
+
+    @GetMapping("/questionSolved/{id}/{idAnswer}")
+    public String markAsSolved(@PathVariable("id") String idQuestion, @PathVariable("idAnswer") String idAnswer) {
+        int idIntAnswer;
+        int idIntQuestion;
+        try {
+            idIntAnswer = Integer.parseInt(idAnswer);
+            idIntQuestion = Integer.parseInt(idQuestion);
+        } catch (NumberFormatException exception) {
+            return "welcome";
+        }
+        questionService.questionSolved(idIntAnswer);
+        //long questionId = questionService.getAnswerById(idIntAnswer).getQuestion().getId();
+        return "redirect:/answerquestion/{id}";
+    }
 
     @GetMapping("/questionlist")
     public String getQuestions(Model model) {

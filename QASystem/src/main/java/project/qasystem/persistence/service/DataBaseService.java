@@ -169,6 +169,8 @@ public class DataBaseService {
      * @param answerId ID of the answer that solved this question.
      * */
     public void questionSolved(int answerId){
+        //TODO update DB? Currently seems to not change anything.
+
         getAnswerById(answerId).setIsAcceptedAnswer(true);
         getAnswerById(answerId).getQuestion().setIsAnswered(true);
     }
