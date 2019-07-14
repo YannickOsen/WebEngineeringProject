@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.qasystem.persistence.DTOs.*;
 //import project.qasystem.persistence.entities.*;
+import project.qasystem.persistence.model.Question;
 import project.qasystem.persistence.model.User;
 
 import java.util.List;
@@ -24,7 +25,6 @@ public class UserService {
     public User getUserByUserName(String userName) {
         return dataBaseService.getUserByUserName(userName);
     }
-
 
     /**
      * Creates a user with the given parameter. first and last name may be null.
@@ -60,7 +60,6 @@ public class UserService {
         return errorMessage;
     }
 
-
     /**
      * returns a list of all users in the system.
      *
@@ -70,7 +69,9 @@ public class UserService {
         return dataBaseService.getAllUsers();
     }
 
+
     public String getCurrentUser() {return currentUser;}
+
     public void setCurrentUser(String currentUser) {
         this.currentUser = currentUser;
     }

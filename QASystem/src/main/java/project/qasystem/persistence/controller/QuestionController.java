@@ -95,9 +95,12 @@ public class QuestionController {
     }
 
     @GetMapping("/questionlist")
-    public String getQuestions(Model model) {
+    public String getQuestions(Model model, Principal principal) {
         List<QuestionDto> toReturn = questionService.getAllQuestions();
         model.addAttribute("listOfQuestions", toReturn);
+        //String userID = principal.getName();
+        //List<QuestionDto> bookMarks = questionService.getBookmarkedQuestions(userID);
+        //model.addAttribute("bookMarkQuestion", bookMarks);
         return "questionList";
     }
 

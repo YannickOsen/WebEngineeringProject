@@ -47,8 +47,6 @@ public class UserController {
     @RequestMapping("/")
     public String welcome() { return "welcome"; }
 
-
-
     @RequestMapping("/login")
     public String login() {
         return "signin";
@@ -102,6 +100,7 @@ public class UserController {
         }
         return "register";
     }
+
 
 
 }

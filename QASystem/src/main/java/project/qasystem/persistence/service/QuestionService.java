@@ -9,6 +9,7 @@ import project.qasystem.persistence.DTOs.AnswerDTO;
 import project.qasystem.persistence.DTOs.QuestionDto;
 import project.qasystem.persistence.model.Answer;
 import project.qasystem.persistence.model.Question;
+import project.qasystem.persistence.model.User;
 
 @Service
 public class QuestionService {
@@ -90,6 +91,10 @@ public class QuestionService {
             return null;
 //            return dataBaseService.getQuestionListByName(name);
         }
+    }
+
+    public List<QuestionDto> getBookmarkedQuestions(String userName){
+        return dataBaseService.getBookmarkedQuestions(userName);
     }
 
 }

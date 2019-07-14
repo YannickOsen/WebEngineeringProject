@@ -13,9 +13,11 @@ import org.springframework.stereotype.Service;
 import project.qasystem.persistence.DTOs.AnswerDTO;
 import project.qasystem.persistence.DTOs.QuestionDto;
 import project.qasystem.persistence.model.Answer;
+import project.qasystem.persistence.model.Bookmark;
 import project.qasystem.persistence.model.Question;
 import project.qasystem.persistence.model.User;
 import project.qasystem.persistence.repositories.AnswerRepository;
+import project.qasystem.persistence.repositories.BookmarkRepository;
 import project.qasystem.persistence.repositories.QuestionRepository;
 import project.qasystem.persistence.repositories.UserRepository;
 
@@ -37,6 +39,9 @@ public class DataBaseService {
 
     @Autowired
     private AnswerRepository answerRepository;
+
+    @Autowired
+    private BookmarkRepository bookmarkRepository;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -78,6 +83,35 @@ public class DataBaseService {
 
     public List<User> getAllUsers(){
         return userRepository.findAll();
+    }
+
+
+    public List<QuestionDto> getBookmarkedQuestions(String userName){
+        User currentUser = userRepository.findByUsername(userName);
+        List<QuestionDto> questionDtos = new ArrayList<>();
+        List<Question> questionList = new ArrayList<>();
+        if (currentUser == null){
+
+        }else{
+            List<Bookmark> bookmarkedQuestions = bookmarkRepository.findByUser(currentUser);
+
+            for (Bookmark bookmark: bookmarkedQuestions){
+                questionList.add(bookmark.getQuestion());
+            }
+            QuestionDto questionDto;
+            for (Question question: questionList) {
+                questionDto = new QuestionDto();
+                questionDto.setTitle(question.getTitle());
+                questionDto.setDescription(question.getText());
+                questionDto.setAnswered(question.getIsAnswered());
+                questionDto.setSolved(question.getIsSolved());
+                questionDto.setUserName(question.getUser().getUsername());
+                questionDto.setDate(question.getDate());
+                questionDto.setIdQuestion(Math.toIntExact(question.getId()));
+                questionDtos.add(questionDto);
+            }
+        }
+        return questionDtos;
     }
 
 
