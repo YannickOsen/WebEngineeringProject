@@ -92,6 +92,7 @@ public class DataBaseService {
             answerDto.setAuthorName(answer.getUser().getUsername());
             answerDto.setDate(answer.getDate());
             answerDto.setIdQuestion(answer.getQuestion().getId());
+            answerDto.setAcceptedAnswer(answer.isAcceptedAnswer());
             answerDtos.add(answerDto);
         }
         return answerDtos;

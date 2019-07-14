@@ -137,6 +137,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                         <input type="submit" value="Als Lösung akzeptieren">
                     </form>
                 </div>
+                <div th:if="${answer.isAcceptedAnswer() == true}">
+                    <h4>Accepted Solution</h4>
+                </div>
             </div>
         </div>
 
