@@ -43,10 +43,10 @@ public class StartWebApplication {
                     JOptionPane.YES_NO_OPTION);
             if (n == JOptionPane.YES_OPTION) {
                 dbService.initializeData();
-                JOptionPane.showInternalMessageDialog(null, "Ein Nutzerkonto, eine Frage und eine Antwort wurden angelegt. " +
+                JOptionPane.showMessageDialog(null, "Ein Nutzerkonto, eine Frage und eine Antwort wurden angelegt. " +
                         "\nNutzername: defaultuser \nPasswort: password", "Datenbank-Initialisierung", 1);
             } else {
-                JOptionPane.showInternalMessageDialog(null, "Es wurden keine Daten angelegt.", "Datenbank-Initialisierung", 1);
+                JOptionPane.showMessageDialog(null, "Es wurden keine Daten angelegt.", "Datenbank-Initialisierung", 1);
             }
         }
     }
