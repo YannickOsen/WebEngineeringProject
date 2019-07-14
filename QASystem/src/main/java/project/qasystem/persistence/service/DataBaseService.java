@@ -89,7 +89,6 @@ public class DataBaseService {
         int qeustionID = Integer.parseInt(id);
         Question question = questionRepository.findById(qeustionID);
         User currentuser = userRepository.findByUsername(username);
-        List<Bookmark> bookmarkedQuestions = bookmarkRepository.findByUser(currentuser);
         bookmarkRepository.save(new Bookmark(question, currentuser));
     }
 
