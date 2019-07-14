@@ -45,6 +45,24 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
             margin-right: 5px;
             float: left;
         }
+        .answer-header {
+            padding: 5px;
+        }
+        .answer-header p{
+            margin-right: 5px;
+            float: left;
+        }
+        .answers {
+            border: 1px solid #aaa;
+            margin-bottom: 40px;
+        }
+        #answerForm {
+            padding-bottom: 20px;
+            margin-bottom: 50px;
+        }
+        .accept-solution {
+            float: right;
+        }
     </style>
     <script>
         function validateForm() {
@@ -101,36 +119,38 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <div class="question-area text-center col-lg-12">
 
         <div class="question-header">
-        <p th:text="${thisQuestion.getUser().getUsername()}">HansHansHand</p>
+        <p th:text="${thisQuestion.getUser().getUsername()}">bsp</p>
         <p>fragte am</p>
         <p th:text="${thisQuestion.getDate()}">10.09.1000</p>
-        </div><br><br>
-        <h2 th:text="${thisQuestion.getTitle()}">Random Question 1 with even more letters</h2>
-
-        <p th:text="${thisQuestion.getText()}">Random Question description. Random Question description. Random Question description. Random Question description. Random Question description. </p>
-
-
+        </div>
         <br><br>
+        <h3 th:text="${thisQuestion.getTitle()}">Random Question</h3>
+        <p th:text="${thisQuestion.getText()}">Random description</p>
 
+        <br>
 
-        <br><br>
-
-
-        <!--- TODO make pretty--->
         <!-- List all answers -->
-        <p>Bisherige Antworten:</p>
-        <div th:each="answer : ${thisAnswerInList}">
-            <p th:text="${answer.getAuthorName()}"> author.</p> answered
-            <p th:text="${answer.getDate()}"> datum.</p>
-            <h2>
-                 <p th:text="${answer.getText()}"> text.</p>
-            </h2>
+        <h6>Bisherige Antworten:</h6>
+        <div th:each="answer : ${thisAnswerInList}" class="answers">
+            <div class="answer-header">
+                <p th:text="${answer.getAuthorName()}"> author.</p>
+                <p>antwortete am</p>
+                <p th:text="${answer.getDate()}"> datum.</p>
+            </div>
+            <br><br>
+            <h4 th:text="${answer.getText()}"> text.</h4>
+            <div th:each="question : ${listOfQuestions}" class="accept-solution">
+                <div th:if="${question.getIdQuestion() == thisQuestion.getId()}">
+                    <input type="button" value="Als Lösung akzeptieren">
+                </div>
+            </div>
         </div>
 
+        <br><br>
         <!-- if a user is logged if, he/she/it can create an answer -->
         <form th:action="@{/answerquestion/{id}(id=${thisQuestion.getId()})}" th:object="${answer}" id="answerForm" name="answerForm" onsubmit="return validateForm()" method="post">
-            <p>Deine Antwort:</p></p><br>
-            <input th:field="*{text}" id="text" type="text" name="answer" class="col-sm-6 col-md-4" style="height: 100px;" placeholder="Antwort...">
+            <p>Deine Antwort:</p>
+            <textarea th:field="*{text}" id="text" type="text" name="answer" class="col-sm-6 col-md-4" style="height: 100px;" placeholder="Antwort..."></textarea>
             <br><br>
             <input type="submit" value="Antworten">
         </form>
