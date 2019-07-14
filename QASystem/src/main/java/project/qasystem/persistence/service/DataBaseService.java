@@ -69,6 +69,7 @@ public class DataBaseService {
 
     public void insertAnswer(String username, long idQuestion, String text){
         Question question = questionRepository.findById(idQuestion);
+        question.setIsAnswered(true);
         User user = userRepository.findByUsername(username);
         Answer answer = new Answer(question, text, user);
         answerRepository.save(answer);

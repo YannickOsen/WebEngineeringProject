@@ -66,8 +66,8 @@ public class Question {
     public boolean getIsAnswered() {return isAnswered;}
     public void setIsAnswered(boolean isAnswered) {this.isAnswered = isAnswered;}
 
-    public boolean getIsSolved() {return isAnswered;}
-    public void setIsSolved(boolean isSolved) {this.isAnswered = isSolved;}
+    public boolean getIsSolved() {return isSolved;}
+    public void setIsSolved(boolean isSolved) {this.isSolved = isSolved;}
 
 
 }
