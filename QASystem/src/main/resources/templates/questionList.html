@@ -165,7 +165,6 @@
                         <tbody id="myBookmarks">
                         <!--- -->
                         <tbody>
-                        <!--- TODO th:if user is logged in, show this--->
                         <tr th:each="questionList : ${bookMarkQuestion}">
                             <td th:text="${questionList.getDate()  }"></td>
                             <td th:text="${questionList.getUserName()}"></td>
