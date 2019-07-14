@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>QQuestion</title>
+
+    <!--<link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+            background-color: #e1f5fe;
+        }
+        .navbar {
+            padding: .8rem;
+        }
+        .nav-link {
+            font-size: 1.1em !important;
+        }
+        ul{
+            display: inline-block;
+        }
+        .padding {
+            padding-bottom: 2rem;
+        }
+        #planTable {
+            background-color: #fff;
+        }
+        #planTable a {
+            color: #81d4fa
+        }
+        #planTable a:hover {
+            color: #81d4fa;
+            text-decoration: underline;
+        }
+        #planTable td {
+            max-width: 120px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="./"><p style="font-size: 2em; color: #afc2cb; margin-bottom: 0;">QQ</p></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div th:replace="navbar.html"></div>
+    </div>
+</nav>
+<div class="container-fluid padding" >
+    <div class="row text-center">
+        <div class="col-lg-12">
+            <h2>Gespeicherte Fragen</h2>
+        </div>
+
+    </div>
+</div>
+
+<main role="main" class="container">
+    <div class="container-fluid padding" >
+        <div class="row text-center">
+            <div class="col-lg-12">
+
+                <form th:action="@{/getQuestion}" >
+                    <table id="planTable" class="table table-bordered table-condensed"
+                           data-toggle="table" >
+                        <thead>
+                        <tr>
+                            <th data-field="date" data-sortable="true">
+                                Datum
+                            </th>
+                            <th data-field="username" data-sortable="true">
+                                Author
+                            </th>
+                            <th data-field="title" data-sortable="true">
+                                Title
+                            </th>
+                            <th data-field="description" data-sortable="true">
+                                Beschreibung
+                            </th>
+                            <th data-field="isAnswered" data-sortable="true">
+                                Beantwortet
+                            </th>
+                            <th data-field="isSolved" data-sortable="true">
+                                Gelöst
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody id="myTable">
+                        <!---
+                        <tr th:each="questionList : ${listOfQuestions}">
+                            <td th:text="${questionList.getDate()  }"></td>
+                            <td th:text="${questionList.getUserName()}"></td>
+                            <td><a th:text="${questionList.getTitle()}"
+                                   th:href="@{/answerquestion/{id}(id=${questionList.getIdQuestion()})}"></a></td>
+                            <td th:text="${questionList.getDescription()}"></td>
+                            <td th:text="${questionList.isAnswered()}"></td>
+                            <td th:text="${questionList.isSolved()}"></td>
+                        </tr>-->
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- /.container -->
+<!--<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>-->
+</body>
+</html>
