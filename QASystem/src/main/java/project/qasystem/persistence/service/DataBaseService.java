@@ -28,6 +28,7 @@ import java.util.Optional;
  */
 @Service
 public class DataBaseService {
+
     @Autowired
     private UserRepository userRepository;
 
@@ -172,5 +173,18 @@ public class DataBaseService {
         getAnswerById(answerId).getQuestion().setIsAnswered(true);
     }
 
+    public void initializeData() {
+        User user = new User();
+        user.setPassword(new BCryptPasswordEncoder().encode("password"));
+        user.setUsername("defaultuser");
+        userRepository.save(user);
+        Question question = new Question("Wie initialisiere ich Daten?", "Ich habe eine Spring Boot App und möchte Daten initialisieren.", user);
+        Answer answer = new Answer(question, "Mach einfach eine innere CommandLineRunner-Klasse in die Main-Klasse und speicher da die Daten in die Repos.", user);
+        question.setIsAnswered(true);
+        question.setIsSolved(true);
+        questionRepository.save(question);
+        answer.setIsAcceptedAnswer(true);
+        answerRepository.save(answer);
 
+    }
 }

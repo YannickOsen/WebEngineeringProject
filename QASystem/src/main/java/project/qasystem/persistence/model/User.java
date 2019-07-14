@@ -1,6 +1,7 @@
 package project.qasystem.persistence.model;
 
 import org.hibernate.validator.constraints.UniqueElements;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 
@@ -19,7 +20,7 @@ public class User {
     @Column
     private String password;
 
-    public User(){}
+    public User() {}
 
     public String getUsername() {
         return username;
