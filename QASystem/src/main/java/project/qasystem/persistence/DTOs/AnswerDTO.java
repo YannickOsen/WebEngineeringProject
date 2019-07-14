@@ -1,18 +1,22 @@
 package project.qasystem.persistence.DTOs;
 
+import java.util.Date;
+
 public class AnswerDTO {
     private String authorName;
     private long idQuestion;
     private long idAnswer;
     private boolean isAcceptedAnswer;
     private String text;
+    private Date date;
 
-    public AnswerDTO(int idAnswer, int idQuestion, String authorName, boolean isAcceptedAnswer, String text){
+    public AnswerDTO(int idAnswer, int idQuestion, String authorName, boolean isAcceptedAnswer, String text, Date date){
         this.idAnswer = idAnswer;
         this.idQuestion = idQuestion;
         this.authorName = authorName;
         this.isAcceptedAnswer = isAcceptedAnswer;
         this.text = text;
+        this.date = date;
 
     }
 
@@ -58,5 +62,11 @@ public class AnswerDTO {
         this.text = text;
     }
 
+    public Date getDate() {
+        return date;
+    }
 
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }

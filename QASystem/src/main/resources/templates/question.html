@@ -100,7 +100,6 @@
 <main role="main" class="container">
     <div class="question-area text-center col-lg-12">
 
-        <!--- TODO make pretty--->
         <div class="question-header">
         <p th:text="${thisQuestion.getUser().getUsername()}">HansHansHand</p>
         <p>fragte am</p>
@@ -117,11 +116,16 @@
         <br><br>
 
 
-        <!---- TODO fetch Answers--->
+        <!--- TODO make pretty--->
         <!-- List all answers -->
-        <h2>
-            <p> Sing.</p>
-        </h2>
+        <p>Bisherige Antworten:</p>
+        <div th:each="answer : ${thisAnswerInList}">
+            <p th:text="${answer.getAuthorName()}"> author.</p> answered
+            <p th:text="${answer.getDate()}"> datum.</p>
+            <h2>
+                 <p th:text="${answer.getText()}"> text.</p>
+            </h2>
+        </div>
 
         <!-- if a user is logged if, he/she/it can create an answer -->
         <form th:action="@{/answerquestion/{id}(id=${thisQuestion.getId()})}" th:object="${answer}" id="answerForm" name="answerForm" onsubmit="return validateForm()" method="post">

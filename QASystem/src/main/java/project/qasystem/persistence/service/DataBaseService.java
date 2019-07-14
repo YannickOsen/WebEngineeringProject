@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import project.qasystem.persistence.model.User;
 import org.springframework.stereotype.Service;
+import project.qasystem.persistence.DTOs.AnswerDTO;
 import project.qasystem.persistence.DTOs.QuestionDto;
 import project.qasystem.persistence.model.Answer;
 import project.qasystem.persistence.model.Question;
@@ -27,7 +28,6 @@ import java.util.Optional;
  */
 @Service
 public class DataBaseService {
-
     @Autowired
     private UserRepository userRepository;
 
@@ -39,7 +39,9 @@ public class DataBaseService {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-   
+
+
+
     public Question getQuestionById(long id){
         return questionRepository.findById(id);
     }
@@ -47,7 +49,6 @@ public class DataBaseService {
     public Answer getAnswerById(long id){
         return answerRepository.findById(id);
     }
-
 
     public void insertUser(String userName, String passWord){
         User user = new User();
@@ -75,6 +76,23 @@ public class DataBaseService {
 
     public List<User> getAllUsers(){
         return userRepository.findAll();
+    }
+
+
+    public List<AnswerDTO> getAnswerByQuestion(Question question){
+        List<AnswerDTO> answerDtos = new ArrayList<>();
+        List<Answer> answers = answerRepository.findByQuestion(question);
+
+        for (Answer answer: answers) {
+            AnswerDTO answerDto = new AnswerDTO();
+            answerDto.setIdAnswer(Math.toIntExact(answer.getId()));
+            answerDto.setText(answer.getText());
+            answerDto.setAuthorName(answer.getUser().getUsername());
+            answerDto.setDate(answer.getDate());
+            answerDto.setIdQuestion(answer.getQuestion().getId());
+            answerDtos.add(answerDto);
+        }
+        return answerDtos;
     }
 
     public List<QuestionDto> getAllQuestions(String search, String input){
@@ -113,6 +131,7 @@ public class DataBaseService {
         }
         return questionDtos;
     }
+
 
     /**
      * Looks for questions with a specific String in its title/username.

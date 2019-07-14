@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import project.qasystem.persistence.DTOs.AnswerDTO;
 import project.qasystem.persistence.DTOs.QuestionDto;
+import project.qasystem.persistence.model.Answer;
 import project.qasystem.persistence.model.Question;
 
 @Service
@@ -20,6 +22,10 @@ public class QuestionService {
         return dataBaseService.getQuestionById(idLong);
     }
 
+
+    public List<AnswerDTO> getAnswerByQuestion(Question question){
+        return dataBaseService.getAnswerByQuestion(question);
+    }
 
     //TODO remove if DB variant is usable everytime.
     public void insertQuestion(String title, String description, String userName){

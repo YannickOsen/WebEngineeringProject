@@ -40,6 +40,8 @@ public class Answer {
         this.isAcceptedAnswer = false;
     }
 
+    public Answer(){}
+
     public long getId() {return id;}
     public void setId(long id) {this.id = id;}
 
@@ -53,6 +55,21 @@ public class Answer {
     public User getUser() {return user;}
     public void setUser(User user) {this.user = user;}
 
+    public boolean isAcceptedAnswer() {
+        return isAcceptedAnswer;
+    }
+
+    public void setAcceptedAnswer(boolean acceptedAnswer) {
+        isAcceptedAnswer = acceptedAnswer;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public void setIsAcceptedAnswer(boolean isAcceptedAnswer) { this.isAcceptedAnswer = isAcceptedAnswer;  }
 }
