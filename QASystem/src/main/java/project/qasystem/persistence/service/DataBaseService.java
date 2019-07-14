@@ -96,7 +96,7 @@ public class DataBaseService {
             case "myquestions":
                                User user = userRepository.findByUsername(input);
                                questions = questionRepository.findByUser(user);
-                                  ;
+                                  break;
         }
 
         QuestionDto questionDto;

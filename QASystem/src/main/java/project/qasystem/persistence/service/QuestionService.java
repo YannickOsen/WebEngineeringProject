@@ -60,7 +60,7 @@ public class QuestionService {
     }
 
     public List<QuestionDto> getuserQuestions(String username) {
-        return dataBaseService.getAllQuestions("myquestions", "username");
+        return dataBaseService.getAllQuestions("myquestions", username);
     }
 
     /**

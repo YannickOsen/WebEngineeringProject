@@ -136,7 +136,7 @@ public class QuestionController {
             if (solved == null && notsolved == null && answered == null && notanswered != null && myquestions == null) {
                 toReturn = questionService.getnotansweredQuestions();
             }
-            if (solved != null && notsolved == null && answered != null && notanswered == null && myquestions != null) {
+            if (solved == null && notsolved == null && answered == null && notanswered == null && myquestions != null) {
                 toReturn = questionService.getuserQuestions(principal.getName());
             }
         } else {
