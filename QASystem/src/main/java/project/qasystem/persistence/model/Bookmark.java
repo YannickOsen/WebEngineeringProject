@@ -25,6 +25,9 @@ public class Bookmark {
         this.question = question;
         this.user = user;
     }
+
+    public Bookmark(){}
+
     public long getId() {return id;}
     public void setId(long id) {this.id = id;}
 
