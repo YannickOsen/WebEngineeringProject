@@ -36,7 +36,6 @@ public class RegistrationDto {
 
     public void userNameTest() {
         if (this.userName != null) {
-            //TODO check if username already exists with UserService.checkToCreateUser
             if (true) {
                 throw new IllegalArgumentException("UserName is already taken");
             }

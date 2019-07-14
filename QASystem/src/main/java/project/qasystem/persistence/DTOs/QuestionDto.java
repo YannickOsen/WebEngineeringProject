@@ -16,7 +16,6 @@ public class QuestionDto {
     private String description;
     private List<Answer> answerList;
     private Date date;
-    //TODO maybe integrate "isAnswered" into Answerlist
 
     public QuestionDto(String userName, int idQuestion, boolean isAnswered, boolean isSolved, String title, String description, List<Answer> answerList, Date date){
         this.userName = userName;

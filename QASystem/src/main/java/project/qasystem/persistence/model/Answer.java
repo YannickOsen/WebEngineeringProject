@@ -7,7 +7,6 @@ import java.util.Date;
 @Table(name="Answers")
 public class Answer {
 
-    //TODO adapt remainder of entities.Answer elements
 
     @Id
     @Column

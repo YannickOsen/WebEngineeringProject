@@ -42,11 +42,9 @@ public class UserController {
      * @return "user_startup_page" to navigate to the page.
      */
     @RequestMapping("/home")
-    //TODO create startup page for user
     public String startUp() { return "welcome"; }
 
     @RequestMapping("/")
-    //TODO create startup page for user
     public String welcome() { return "welcome"; }
 
 
@@ -100,7 +98,5 @@ public class UserController {
         return "register";
     }
 
-
-    //TODO add user:Post
 
 }
