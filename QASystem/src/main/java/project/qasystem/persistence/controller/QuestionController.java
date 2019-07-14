@@ -51,9 +51,11 @@ public class QuestionController {
 
     @GetMapping("/answerquestion/{id}")
     public String showAnswerForm(@PathVariable("id") String id, Model model, Principal principal) {
+        List<QuestionDto> questionsOfThisUser = null;
         if (principal != null){
             Boolean isLoggedIn = true;
             model.addAttribute("isLoggedIn", isLoggedIn);
+            questionsOfThisUser = questionService.getuserQuestions(principal.getName());
         }
         model.addAttribute("answer", new AnswerDTO());
         int idInt;
@@ -64,7 +66,6 @@ public class QuestionController {
         }
         Question toGet = questionService.getQuestionById(idInt);
         List<AnswerDTO> answersToGet = questionService.getAnswerByQuestion(toGet);
-        List<QuestionDto> questionsOfThisUser = questionService.getuserQuestions(principal.getName());
         if (toGet == null) {
             return "welcome";
         } else {
