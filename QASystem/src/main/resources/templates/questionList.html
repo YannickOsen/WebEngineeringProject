@@ -154,7 +154,7 @@
                     <tbody id="myBookmarks">
                     <!--- -->
                     <tbody>
-                    <!--- TODO th:if user is logged in, show this
+                    <!--- TODO th:if user is logged in, show this--->
                     <tr th:each="questionList : ${bookMarkQuestion}">
                         <td th:text="${questionList.getDate()  }"></td>
                         <td th:text="${questionList.getUserName()}"></td>
@@ -163,7 +163,7 @@
                         <td th:text="${questionList.getDescription()}"></td>
                         <td th:text="${questionList.isAnswered()}"></td>
                         <td th:text="${questionList.isSolved()}"></td>
-                    </tr>--->
+                    </tr>
                     </tbody>
                 </table>
             </form>
