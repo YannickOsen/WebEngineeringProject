@@ -136,46 +136,48 @@
                     </tr>
                     </tbody>
                 </table>
-                <h4>Meine Bookmarks:</h4>
-                <table id="planTableBookmarks" class="table table-bordered table-condensed"
-                       data-toggle="table" >
-                    <thead>
-                    <tr>
-                        <th data-field="date" data-sortable="true">
-                            Datum
-                        </th>
-                        <th data-field="username" data-sortable="true">
-                            Author
-                        </th>
-                        <th data-field="title" data-sortable="true">
-                            Title
-                        </th>
-                        <th data-field="description" data-sortable="true">
-                            Beschreibung
-                        </th>
-                        <th data-field="isAnswered" data-sortable="true">
-                            Beantwortet
-                        </th>
-                        <th data-field="isSolved" data-sortable="true">
-                            Gelöst
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody id="myBookmarks">
-                    <!--- -->
-                    <tbody>
-                    <!--- TODO th:if user is logged in, show this--->
-                    <tr th:each="questionList : ${bookMarkQuestion}">
-                        <td th:text="${questionList.getDate()  }"></td>
-                        <td th:text="${questionList.getUserName()}"></td>
-                        <td><a th:text="${questionList.getTitle()}"
-                               th:href="@{/answerquestion/{id}(id=${questionList.getIdQuestion()})}"></a></td>
-                        <td th:text="${questionList.getDescription()}"></td>
-                        <td th:text="${questionList.isAnswered()}"></td>
-                        <td th:text="${questionList.isSolved()}"></td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div th:if="${isLoggedIn}">
+                    <h4 >Meine Bookmarks:</h4>
+                    <table id="planTableBookmarks" class="table table-bordered table-condensed"
+                           data-toggle="table">
+                        <thead>
+                        <tr>
+                            <th data-field="date" data-sortable="true">
+                                Datum
+                            </th>
+                            <th data-field="username" data-sortable="true">
+                                Author
+                            </th>
+                            <th data-field="title" data-sortable="true">
+                                Title
+                            </th>
+                            <th data-field="description" data-sortable="true">
+                                Beschreibung
+                            </th>
+                            <th data-field="isAnswered" data-sortable="true">
+                                Beantwortet
+                            </th>
+                            <th data-field="isSolved" data-sortable="true">
+                                Gelöst
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody id="myBookmarks">
+                        <!--- -->
+                        <tbody>
+                        <!--- TODO th:if user is logged in, show this--->
+                        <tr th:each="questionList : ${bookMarkQuestion}">
+                            <td th:text="${questionList.getDate()  }"></td>
+                            <td th:text="${questionList.getUserName()}"></td>
+                            <td><a th:text="${questionList.getTitle()}"
+                                   th:href="@{/answerquestion/{id}(id=${questionList.getIdQuestion()})}"></a></td>
+                            <td th:text="${questionList.getDescription()}"></td>
+                            <td th:text="${questionList.isAnswered()}"></td>
+                            <td th:text="${questionList.isSolved()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </form>
             </div>
         </div>

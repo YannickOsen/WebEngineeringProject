@@ -145,10 +145,12 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
         <br><br>
         <!-- if a user is logged if, he/she/it can create an answer -->
         <form th:action="@{/answerquestion/{id}(id=${thisQuestion.getId()})}" th:object="${answer}" id="answerForm" name="answerForm" onsubmit="return validateForm()" method="post">
-            <p>Deine Antwort:</p>
-            <textarea th:field="*{text}" id="text" type="text" name="answer" class="col-sm-6 col-md-4" style="height: 100px;" placeholder="Antwort..."></textarea>
-            <br><br>
-            <input type="submit" value="Antworten">
+            <div th:if="${isLoggedIn}">
+                <p>Deine Antwort:</p>
+                <textarea th:field="*{text}" id="text" type="text" name="answer" class="col-sm-6 col-md-4" style="height: 100px;" placeholder="Antwort..."></textarea>
+                <br><br>
+                <input type="submit" value="Antworten">
+            </div>
         </form>
     </div>
 </main>
