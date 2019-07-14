@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import project.qasystem.persistence.DTOs.AnswerDTO;
 import project.qasystem.persistence.DTOs.QuestionDto;
+import project.qasystem.persistence.model.Answer;
 import project.qasystem.persistence.service.*;
 import project.qasystem.persistence.model.Question;
 
@@ -54,7 +55,6 @@ public class QuestionController {
      */
 /*
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    //TODO adapt to new project
     public String getQuestion(@PathVariable("id") String id, Model model) {
         int idInt;
         try {
@@ -83,10 +83,12 @@ public class QuestionController {
             return "welcome";
         }
         Question toGet = questionService.getQuestionById(idInt);
+        List<AnswerDTO> answersToGet = questionService.getAnswerByQuestion(toGet);
         if (toGet == null) {
             return "welcome";
         } else {
             model.addAttribute("thisQuestion", toGet);
+            model.addAttribute("thisAnswerInList", answersToGet);
             return "question";
         }
     }
@@ -101,6 +103,7 @@ public class QuestionController {
         questionService.insertAnswer(answerDTO.getAuthorName(), answerDTO.getIdQuestion(), answerDTO.getText());
         return "redirect:/answerquestion/{id}";
     }
+
 
     @GetMapping("/questionlist")
     public String getQuestions(Model model) {

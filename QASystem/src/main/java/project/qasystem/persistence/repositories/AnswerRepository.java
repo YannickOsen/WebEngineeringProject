@@ -2,6 +2,7 @@ package project.qasystem.persistence.repositories;
 
         import org.springframework.data.jpa.repository.JpaRepository;
         import org.springframework.stereotype.Repository;
+        import project.qasystem.persistence.DTOs.AnswerDTO;
         import project.qasystem.persistence.model.Answer;
         import project.qasystem.persistence.model.Question;
         import project.qasystem.persistence.model.User;
