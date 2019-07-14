@@ -72,11 +72,6 @@ public class UserController {
         return "questionList";
     }
 
-    @RequestMapping("/bookmarklist")
-    public String bookmarkList() {
-        return "bookmarkList";
-    }
-
     @RequestMapping("/question")
     public String question() {
         return "question";
