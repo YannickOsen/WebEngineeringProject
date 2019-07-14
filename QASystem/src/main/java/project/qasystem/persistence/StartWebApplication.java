@@ -16,21 +16,16 @@ import project.qasystem.persistence.service.DataBaseService;
 import javax.swing.*;
 
 @SpringBootApplication
-public class StartWebApplication {
+public class StartWebApplication implements CommandLineRunner {
 
 
     public static void main(String[] args) {
         ApplicationContext context = new SpringApplicationBuilder(StartWebApplication.class).headless(false).run(args);
     }
 
-    ;
-
     /**
-     * Class that handles database initialization on startup
-     */
-    @Component
-    class DemoCommandLineRunner implements CommandLineRunner {
-
+    * Code that handles database initialization on startup
+     * */
         @Autowired
         DataBaseService dbService;
 
@@ -47,7 +42,7 @@ public class StartWebApplication {
                         "\nNutzername: defaultuser \nPasswort: password", "Datenbank-Initialisierung", 1);
             } else {
                 JOptionPane.showInternalMessageDialog(null, "Es wurden keine Daten angelegt.", "Datenbank-Initialisierung", 1);
-            }
+
         }
     }
 }
