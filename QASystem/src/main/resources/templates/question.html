@@ -53,11 +53,14 @@
         }
         .answers {
             border: 1px solid #aaa;
-            margin-bottom: 5px;
+            margin-bottom: 40px;
         }
         #answerForm {
             padding-bottom: 20px;
             margin-bottom: 50px;
+        }
+        .accept-solution {
+            float: right;
         }
     </style>
     <script>
@@ -136,17 +139,18 @@
             </div>
             <br><br>
             <h4 th:text="${answer.getText()}"> text.</h4>
-            <div th:each="question : ${listOfQuestions}">
+            <div th:each="question : ${listOfQuestions}" class="accept-solution">
                 <div th:if="${question.getIdQuestion() == thisQuestion.getId()}">
                     <input type="button" value="Als Lösung akzeptieren">
                 </div>
             </div>
         </div>
 
+        <br><br>
         <!-- if a user is logged if, he/she/it can create an answer -->
         <form th:action="@{/answerquestion/{id}(id=${thisQuestion.getId()})}" th:object="${answer}" id="answerForm" name="answerForm" onsubmit="return validateForm()" method="post">
-            <p>Deine Antwort:</p></p><br>
-            <input th:field="*{text}" id="text" type="text" name="answer" class="col-sm-6 col-md-4" style="height: 100px;" placeholder="Antwort...">
+            <p>Deine Antwort:</p>
+            <textarea th:field="*{text}" id="text" type="text" name="answer" class="col-sm-6 col-md-4" style="height: 100px;" placeholder="Antwort..."></textarea>
             <br><br>
             <input type="submit" value="Antworten">
         </form>
