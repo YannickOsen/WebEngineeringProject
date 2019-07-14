@@ -8,6 +8,7 @@ package project.qasystem.persistence.model;
         import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
         import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
         import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+        import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
         import project.qasystem.persistence.service.CustomUserDetailsService;
 
 @Configuration
@@ -35,9 +36,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // enable this and .csrf to access H2-Database from webbrowser with /console/
-        // http.headers().frameOptions().disable();
+//         http.headers().frameOptions().disable();
         http
-                //.csrf().disable()
+//                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers( "/").permitAll()
                 .antMatchers("/login").permitAll()
@@ -45,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/questionlist").permitAll()
 
                 .antMatchers("/logout").permitAll()
-                .antMatchers("/console/*").permitAll()
+//                .antMatchers("/console/*").permitAll()
 
                 .anyRequest().authenticated()
                 .and()
@@ -55,6 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/logout_successful")
                 .permitAll()
                 .clearAuthentication(true);
