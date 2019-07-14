@@ -33,7 +33,11 @@ public class QuestionController {
     }
 
     @GetMapping("/newquestion")
-    public String showQuestionForm(Model model) {
+    public String showQuestionForm(Model model, Principal principal) {
+        if (principal != null){
+            Boolean isLoggedIn = true;
+            model.addAttribute("isLoggedIn", isLoggedIn);
+        }
         model.addAttribute("newQuestion", new QuestionDto());
         return "newQuestion";
     }
@@ -47,6 +51,10 @@ public class QuestionController {
 
     @GetMapping("/answerquestion/{id}")
     public String showAnswerForm(@PathVariable("id") String id, Model model, Principal principal) {
+        if (principal != null){
+            Boolean isLoggedIn = true;
+            model.addAttribute("isLoggedIn", isLoggedIn);
+        }
         model.addAttribute("answer", new AnswerDTO());
         int idInt;
         try {
@@ -80,9 +88,13 @@ public class QuestionController {
 
 
     @GetMapping("/questionSolved/{id}/{idAnswer}")
-    public String markAsSolved(@PathVariable("id") String idQuestion, @PathVariable("idAnswer") String idAnswer) {
+    public String markAsSolved(@PathVariable("id") String idQuestion, @PathVariable("idAnswer") String idAnswer, Principal principal, Model model) {
         int idIntAnswer;
         int idIntQuestion;
+        if (principal != null){
+            Boolean isLoggedIn = true;
+            model.addAttribute("isLoggedIn", isLoggedIn);
+        }
         try {
             idIntAnswer = Integer.parseInt(idAnswer);
             idIntQuestion = Integer.parseInt(idQuestion);
@@ -103,6 +115,10 @@ public class QuestionController {
             List<QuestionDto> bookMarks = questionService.getBookmarkedQuestions(userID);
             model.addAttribute("bookMarkQuestion", bookMarks);
         }
+        if (principal != null){
+            Boolean isLoggedIn = true;
+            model.addAttribute("isLoggedIn", isLoggedIn);
+        }
         return "questionList";
     }
 
@@ -116,6 +132,11 @@ public class QuestionController {
                                          @RequestParam(value = "myquestions", required = false) String myquestions,
                                          Model model, Principal principal
     ) {
+
+        if (principal != null){
+            Boolean isLoggedIn = true;
+            model.addAttribute("isLoggedIn", isLoggedIn);
+        }
         List<QuestionDto> toReturn = null;
         if (value == "") {
             if (solved != null && notsolved != null && answered != null && notanswered != null && myquestions != null) {

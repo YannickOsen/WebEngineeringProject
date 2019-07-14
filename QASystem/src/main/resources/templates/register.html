@@ -43,12 +43,27 @@
 
 <body>
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="./"><p style="font-size: 2em; color: #afc2cb; margin-bottom: 0;">QQ</p></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div th:replace="navbar.html"></div>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/newquestion">Frage stellen</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/questionlist">Fragenübersicht</a>
+            </li>
+            <li class="nav-item" th:if="!${isLoggedIn}">
+                <a class="nav-link" href="/login">Anmelden</a>
+            </li>
+            <li class="nav-item" th:if="!${isLoggedIn}">
+                <a class="nav-link" href="/registration">Registrieren</a>
+            </li>
+            <li class="nav-item" th:if="${isLoggedIn}">
+                <a class="nav-link" href="/logout">Abmelden</a>
+            </li>
+        </ul>
     </div>
 </nav>
 
