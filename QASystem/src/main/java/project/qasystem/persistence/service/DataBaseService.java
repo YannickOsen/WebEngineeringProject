@@ -169,8 +169,12 @@ public class DataBaseService {
      * @param answerId ID of the answer that solved this question.
      * */
     public void questionSolved(int answerId){
-        getAnswerById(answerId).setIsAcceptedAnswer(true);
-        getAnswerById(answerId).getQuestion().setIsAnswered(true);
+        Answer answer = answerRepository.findById(answerId);
+        Answer original = answer;
+        answer.setIsAcceptedAnswer(true);
+        answer.getQuestion().setIsSolved(true);
+        answerRepository.delete(original);
+        answerRepository.save(answer);
     }
 
     public void initializeData() {
