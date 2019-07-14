@@ -41,12 +41,14 @@
             color: #81d4fa
         }
         #planTable a:hover {
-            color: #81d4fa
+            color: #81d4fa;
             text-decoration: underline;
         }
         #planTable td {
             max-width: 120px;
-            word-break: break-all;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
         }
     </style>
 </head>
