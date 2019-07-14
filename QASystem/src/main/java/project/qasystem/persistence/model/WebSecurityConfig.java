@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // enable this and .csrf to access H2-Database from webbrowser with /console/
         // http.headers().frameOptions().disable();
         http
-                //.csrf().disable()
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers( "/").permitAll()
                 .antMatchers("/login").permitAll()
@@ -45,7 +45,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/questionlist").permitAll()
 
                 .antMatchers("/logout").permitAll()
-                .antMatchers("/console/*").permitAll()
 
                 .anyRequest().authenticated()
                 .and()
