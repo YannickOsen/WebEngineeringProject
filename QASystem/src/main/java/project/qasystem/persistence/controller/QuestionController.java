@@ -45,35 +45,6 @@ public class QuestionController {
         return "redirect:/questionlist";
     }
 
-    /**
-     * handles get requests for questions.
-     * checks if the provided id is valid and if the question exists.
-     *
-     * @param id the id of the question to be displayed
-     * @param model the model Thymeleaf uses.
-     * @return Question at success to display the found Question;
-     * error when Question not found or id invalid.
-     */
-/*
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String getQuestion(@PathVariable("id") String id, Model model) {
-        int idInt;
-        try {
-            idInt = Integer.parseInt(id);
-        } catch (NumberFormatException exception) {
-            return "welcome";
-        }
-        Question toGet = questionService.getQuestionById(idInt);
-        int testvalue = 0;
-        if (toGet == null) {
-            return "welcome";
-        } else {
-            model.addAttribute("thisQuestion", toGet);
-            return "question";
-        }
-    }
-*/
-
     @GetMapping("/answerquestion/{id}")
     public String showAnswerForm(@PathVariable("id") String id, Model model, Principal principal) {
         model.addAttribute("answer", new AnswerDTO());
