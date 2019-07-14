@@ -138,9 +138,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                     </form>
                 </div>
                 <!--- TODO make pretty-->
-                <div th:if="${answer.isAcceptedAnswer() == true}">
-                    <h4>Accepted Solution</h4>
-                </div>
+            </div>
+            <div th:if="${answer.isAcceptedAnswer() == true}">
+                <h4>Accepted Solution</h4>
             </div>
         </div>
 
