@@ -125,6 +125,11 @@
             <h2>
                  <p th:text="${answer.getText()}"> text.</p>
             </h2>
+            <div th:each="question : ${listOfQuestions}">
+                <div th:if="${question.getIdQuestion() == thisQuestion.getId()}">
+                    <input type="button" value="Als Lösung akzeptieren">
+                </div>
+            </div>
         </div>
 
         <!-- if a user is logged if, he/she/it can create an answer -->
